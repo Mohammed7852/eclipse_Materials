@@ -1,0 +1,28 @@
+package Assignmen_2;
+
+public  class HeapSort
+{
+	public void SortAsscend(int[] a, int n){
+		T x;
+		size = n;
+		maxsize = n;
+		heap = (HeapElement<T>[])
+		Array.newInstance(HeapElement.class, n+1);
+		for (int i = 0; i < n; ++i){
+		x = (T) new Object();
+		heap[i+1] = new HeapElement<T>(x, new Priority(a[i]));
+		}
+		for (int m = size/2; m >= 1; --m)
+		SiftDown(m);
+		while (size>1){
+		swap(heap, 1, size);
+		size--;
+		SiftDown(1);
+		}
+		
+		for(int i = 1; i<=maxsize; i++){
+			
+		System.out.print(heap[i].get_priority().get_value()+" ");
+		}
+		}
+}

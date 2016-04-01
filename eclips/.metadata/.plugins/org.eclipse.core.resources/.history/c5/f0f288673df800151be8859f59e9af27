@@ -1,0 +1,138 @@
+
+
+package Assignmen_2;
+
+import java.io.*;
+
+
+public class HeapSort 
+{
+    private static int[] a;
+    private static int n;
+    private static int left;
+    private static int right;
+    private static int largest;
+
+    // Build-Heap Function
+    public static void buildheap(int []a){
+    	n=a.length-1;
+    	for(int i=n/2;i>=0;i--){
+    		//System.out.println(a[0]);
+    		maxheap(a,i);
+    	}
+    }
+    
+    // Max-Heap Function
+    public static void maxheap(int[] a, int i){
+    	left=2*i;
+    	right=2*i+1;
+    	//System.out.println(i + " " + left + " " + right);
+    	if(left <= n && a[left] > a[i]){
+    		largest=left;
+    	}
+    	else{
+    		largest=i;
+    	}
+    	
+    	if(right <= n && a[right] > a[largest]){
+    		largest=right;
+    	}
+    	if(largest!=i){
+    		exchange(i,largest);
+    		maxheap(a, largest);
+    	}
+    	//System.out.println(a[0]);
+    }
+    
+    // Exchange Function
+    public static void exchange(int i, int j){
+    	int t=a[i];
+    	a[i]=a[j];
+    	a[j]=t; 
+    	}
+    
+    // Sort Function
+    public static void sort(int []a0){
+    	a=a0;
+    	buildheap(a);
+    	System.out.println(a[0]);
+    	for(int i=n;i>0;i--){
+    		
+    		exchange(0, i);
+    		n=n-1;
+    		maxheap(a, 0);
+    	}
+    }
+    
+    public static void main(String[] args) {
+		int []a1={3,5,1,2,4};
+    	sort(a1);
+    	for(int i=0;i<a1.length;i++){
+    		System.out.print(a1[i] + " ");
+    	}
+	}
+} 
+
+
+//
+//public class heap_Sort {
+//	public static void main(String a[]) {
+//		int i;
+//		int arr[] = { 1, 3, 4, 5, 2 };
+//
+//		System.out.println("\n  Heap Sort\n---------------\n");
+//		System.out.println("\n  Unsorted Array\n\n");
+//		for (i = 0; i < arr.length; i++)
+//			System.out.print(" " + arr[i]);
+//		
+//		System.out.println("\n\n");
+//		int  y  = 0;
+//		for (i = arr.length; i >1; i--){
+//			fnSortHeap(arr,i-1);
+//			for(int x:arr)
+//			System.out.print(x+",");
+//			
+//			System.out.print("\n");
+//		}
+//		System.out.print(arr[0]+",");
+//		System.out.println("\n  Sorted array\n---------------\n\n");
+//		for (i = 0; i < arr.length; i++)
+//			System.out.print(" " + arr[i]);
+//	}
+//
+//	public static void fnSortHeap(int array[], int arr_ubound) {
+//		int i, o;
+//		int lChild=0, rChild=0, mChild=0, root=0, temp=0;
+//		root = (arr_ubound - 1) / 2;
+//		//System.out.println("root="+root);
+// 		for (o = 0; o <=root; o++) {
+//			for (i = 0; i <=root; i++) {
+//				lChild = (2 * i) + 1;
+//				rChild = (2 * i) + 2;
+//				//System.out.println("lchild="+lChild+",rchild="+rChild+",  arr_ubound"+arr_ubound);
+//				if ((lChild <= arr_ubound) && (rChild <= arr_ubound)) {
+//					if (array[rChild] <= array[lChild])
+//						mChild = rChild;
+//					else
+//						mChild = lChild;
+//				} else {
+//					if (rChild > arr_ubound)
+//						mChild = lChild;
+//					else
+//						mChild = rChild;
+//				}
+// 				if (array[i] < array[mChild]) {
+//					temp = array[i];
+//					array[i] = array[mChild];
+//					array[mChild] = temp;
+//				}
+//				
+//			}
+//		}
+// 		temp = array[0];
+//		array[0] = array[arr_ubound];
+//		array[arr_ubound] = temp;
+//        
+//		return;
+//	}
+//}
