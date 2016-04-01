@@ -1,0 +1,22 @@
+package Arithmatic_coding;
+
+import  java.util.*;
+import java.io.*;
+
+public class Decompression {
+
+	private  String  str1 , str2  ,str3  ; 
+	private List<Double> problist = new ArrayList();
+	private  List<Character> chars = new ArrayList();
+	private  List<Double> Low = new ArrayList();
+	private  List<Double> up  = new ArrayList();
+	
+	
+	 public void decompress(){
+	   
+		 
+	 }
+	
+	
+}//class
+

@@ -1,0 +1,142 @@
+package Arithmatic_coding;
+import java.io.IOException;
+import java.util.*;
+
+public class Demo {
+
+	private  Double low=0.0  , up =0.0 ;
+	private  int count=0;
+	private  List<Double> lower = new  ArrayList();
+	private  List<Double> upper= new  ArrayList();
+	private  List<Character> chars  = new  ArrayList();
+	private  String  string  = "0.1";
+	private  Double  compression_result  ;
+	
+	public void setchars(String str){
+		Set<Character> s = new  HashSet();
+		for(Character  ch :str.toCharArray()){
+			s.add(ch);
+		}
+		for(Character ch:s){
+			chars.add(ch);
+		}
+		// System.out.print(chars);
+	}//set chars 
+	
+	public void  getcode(){
+		
+		while(true){
+			int  pow = (int) Math.pow(2,string.length()-2) ;
+			System.out.print (pow+"   ");
+			String str = string.substring(2, string.length()) ;
+			System.out.print(str+"   ");
+			Double d  = (double) Integer.parseInt(str, 2);
+			System.out.print(d+"     \n");
+			double res =  (d/pow) ;
+			
+			
+			if(res>low&&res<up){//end of compression  
+				 string="0.1";
+ 				 compression_result=res ;
+				break ;
+			}
+			else if(res>=up){
+				 String  str2 = string.substring(0 , string.length()-1);
+				 str2+="0";
+				 string = str2;
+			}else  if(res<low){
+			    string+="1";   
+			}
+		}//while
+		
+	}
+	
+	public void compress(String str ,List<Double>l  , List<Double> u){
+ 
+		if(count>=str.length()){
+			getcode();
+			return ;
+		}
+ 		Character  ch = str.charAt(count++);
+		int  index  = chars.indexOf(ch);
+		System.out.println("ch="+ch+"   index="+index+"");;
+ 
+		if(count==1){
+			low=lower.get(index);
+			up = upper.get(index);
+			//System.out.println("low="+low+"   up="+up+"");;
+		}else{
+			low= l.get(index);
+			up = u.get(index);
+			//System.out.println("low="+low+"   up="+up+"");;
+		}
+		
+ 		l = new ArrayList();
+		u=new ArrayList();
+		
+ 		Double  a , b ;
+		for(int  i= 0 ;i<chars.size();i++){
+			a=low+((up-low)*lower.get(i));
+			b=low+((up-low)*upper.get(i));
+			l.add(a);
+			u.add(b);
+		}
+		//recursive(0 , l , u );		
+		System.out.println("chars  = "+chars+"    \nlowers ="+l+"      \nuppers = "+u+"");	
+		System.out.println("low="+low+"   up="+up+"");;
+ 		compress(  str , l  ,   u);
+ 		
+	}//compress
+	 	
+	public void  compute_rangs(List<Double> prob , List<Double>l  , List<Double> u){
+ 		if(count>=prob.size()){
+ 			lower = new ArrayList(l);
+			upper= new ArrayList(u);
+			
+			System.out.println("lower="+lower+"    upper="+upper+"\n\n");
+			count= 0 ;
+			low=up=0.0;
+			return ;
+		}
+ 		low = up ;
+		up=prob.get(count++)+low;
+ 		l.add(low);
+		u.add(up);
+		compute_rangs(prob, l, u);
+	}//compute prob 
+	
+	
+	
+	public static void main(String[] args) throws IOException {
+		Demo d = new Demo();
+		Compression c = new  Compression();
+		Decompression dc = new  Decompression();
+		
+		c.compress();
+		
+//		
+//		String str = "ACBA";
+//		d.setchars(str);
+//		
+//		List<Double>prob = new ArrayList();
+//		List<Double>lower = new ArrayList();
+//		List<Character>chars  = new  ArrayList();
+//		List<Double>upper =new ArrayList();
+//		
+//		chars.add('A');
+//		chars.add('B');
+//		chars.add('C');
+//				
+//		prob.add(0.8);
+//		prob.add(0.02);
+//		prob.add(0.18);
+//		
+//		d.compute_rangs(prob, lower, upper);
+//		lower =upper= new ArrayList();
+//		 d.compress(str, lower, upper);
+//		 
+// 			
+//     System.out.println("low ="+lower+"     upper ="+upper+"\n\n");
+	}//main
+
+}

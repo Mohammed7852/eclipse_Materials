@@ -1,0 +1,73 @@
+package Assignment_1;
+import java.util.*;
+
+import java.io.RandomAccessFile;
+public class Demo {
+	
+	public static  void  main(String  [] args)throws Exception{		
+ 		 
+		Demo demo = new Demo();
+		demo.operations();
+		
+ 	}
+	
+	
+	public void CreateRecordsFile(String filename, int numberOfRecords) {
+		
+	}
+	
+	public void InsertValue (String filename, int RecordIndex, int RecordValue){
+		
+	}
+	
+	public void DisplayAllRecords (String filename){
+		
+	}
+	
+	public void DisplayARecordValue(String filename, int RecordIndex) {
+		
+	}
+	
+	public void ReplaceVlauesOfTwoRecords(String filename, int FirstRecordIndex,int
+			SecondRecordIndex){
+		
+	}
+	
+	
+	
+	
+	public static void operations(){
+		List<node> list = new ArrayList();
+		node  n = new node();
+		n.setindex(0);
+		n.setvalue(5);
+		list.add(n);
+		n = new  node();
+		n.setindex(1);
+		n.setvalue(6);
+		list.add(n);
+		
+		System.out.println(list);
+	}
+	
+	
+	
+	public static class node {
+		int index ;
+		int value;
+		public void setindex(int in){
+			index=in;
+		}
+		public void setvalue(int v){
+			value=v;
+		}
+		public int getindex(){return index;}
+		public int getvalue(){return value;}
+		@Override
+		public String toString(){
+			return "index="+getindex()+" and  value="+getvalue();
+		}
+	}//
+	
+	
+}//

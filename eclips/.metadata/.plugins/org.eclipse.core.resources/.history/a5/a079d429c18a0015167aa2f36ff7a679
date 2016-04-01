@@ -1,0 +1,13 @@
+package Arithmatic_coding;
+
+public class Decompression {
+
+	
+	public static void  main(String []args){
+		
+		System.out.println("");
+	}
+	
+	
+}//class
+

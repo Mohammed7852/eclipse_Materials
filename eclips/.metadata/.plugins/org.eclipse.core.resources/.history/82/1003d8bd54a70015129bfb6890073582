@@ -1,0 +1,91 @@
+package Prdictive_Codeing;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class GUI extends JFrame {
+	
+ 	private JPanel contentPane;
+	private JPanel panel2 = new JPanel() ;
+	private JComboBox comboBox = new JComboBox();
+    private  JOptionPane  note  = new  JOptionPane();
+    private JButton btnSubmitt = new JButton("Enter information");
+    private JButton btn2 = new JButton("button 2");
+	
+    public GUI() {
+    	
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+ 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+ 		setTitle("Assignment#4");
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		note.setBounds(100, 20, 100, 100);
+		comboBox.addItem("Type of  user");
+		comboBox.addItem("premuim user");
+		comboBox.addItem("normal user");
+		
+		comboBox.setBounds(100, 100, 150, 34);
+		contentPane.add(comboBox);
+		
+ 		btnSubmitt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+ 			}
+		});
+		
+		btnSubmitt.setBounds(50/*this for width */, 150/*this is for  highet*/, 
+				150/*this is for button width*/, 20/*this is  for  button hidhet*/);
+		contentPane.add(btnSubmitt);
+		btn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+               note.showConfirmDialog(null, btnSubmitt) ;
+			}
+		});
+		//System.out.println(comboBox.getBackground()+""+"");
+	
+		
+		btn2 .setBounds(60, 20, 100, 20);
+		contentPane.add(btn2);
+		
+	}//defualt 
+
+	public void view(){
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI frame = new GUI();
+  					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	//	System.out.println(comboBox);
+		
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		 GUI gui = new GUI();
+		 gui.view();
+	}
+	
+	
+}//class diagram 
+

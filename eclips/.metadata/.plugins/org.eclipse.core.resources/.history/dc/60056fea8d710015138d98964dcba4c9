@@ -1,0 +1,42 @@
+import java.util.ArrayList ;
+import java.util.List ;
+import java.util.*;
+
+
+public class Dimo {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner cin = new Scanner(System.in) ;
+		Spanish_Meal [] Array  = new Spanish_Meal[5] ;
+		 
+		String  str ;
+		
+		
+		
+		 for(int  i= 0 ; i <5;i++)
+		 {
+			 Array[i].setprice(100);
+
+
+			 
+			 
+ 			 
+ 		 }
+		 
+		 
+		
+		
+		
+		
+		
+ 	}
+
+	private static Spanish_Meal open_natural_grassland() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

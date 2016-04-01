@@ -1,0 +1,13 @@
+package first;
+
+import java.util.*;
+import java.io.*;
+
+public class file_manipulation {
+
+	public static void main(String[] args)   {
+		 
+		
+	}
+
+}

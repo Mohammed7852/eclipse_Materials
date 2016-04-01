@@ -1,0 +1,17 @@
+package first;
+
+import java.util.*;
+import java.io.*;
+
+public class file_manipulation {
+
+	public static void main(String[] args) {
+		 
+		System.out.println("nonononon");
+		
+		FileInputStream f = null ;
+		
+		
+	}
+
+}

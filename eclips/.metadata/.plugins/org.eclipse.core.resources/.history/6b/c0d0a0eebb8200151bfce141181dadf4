@@ -1,0 +1,52 @@
+package huffmand;
+
+import java.util.*;
+import  java.util.TreeMap;
+
+
+public class hufmand {
+
+	private  Scanner cin=new Scanner(System.in);
+	private List<Double> list , list1 , list2 , list3 =  new ArrayList();
+	private  int size  , max   ; 
+	private  Vector<Double> v = new Vector();
+	private  Double []arr = new Double [100] ;
+	private  Double  []arr2 ;
+	private Stack<List<Double>> s = new  Stack();
+	
+	void setlist(List<Double> l  )
+	{
+		 this.list = l ;
+		 this.list1 = l ;
+		 this.list2 = l ;
+		 this.list3 = l ;
+		 System.out.println(list);
+		 s.push(list);
+		 Collections.sort(list);
+		 Collections.reverse(list);
+		 
+		 recursive();
+		 System.out.print(s);
+	}
+	
+	void recursive()
+	{
+ 		
+		if(list.size()==2)return ;
+		int sz = list.size() ;
+		 
+		list.set(sz-2, list1.get(sz-1)+ list1.get(sz-2));
+		list.remove(sz-1);
+
+		Collections.sort(list);
+		Collections.reverse(list);
+		
+		s.push(list);
+		System.out.println(list);
+ 		
+		recursive();
+		 
+ 		 
+	}//end void 
+	
+}

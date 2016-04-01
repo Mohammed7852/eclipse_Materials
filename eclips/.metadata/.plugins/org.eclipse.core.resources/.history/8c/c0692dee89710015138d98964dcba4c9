@@ -1,0 +1,13 @@
+import java.util.ArrayList ;
+import java.util.List;
+
+
+public class Nim {
+
+	public static void main(String args[])
+	{
+		System.out.print("Mohammed Ali Shabanah"
+				+ "");
+	}
+	
+}

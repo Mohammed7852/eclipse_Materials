@@ -1,0 +1,15 @@
+package LectureCodes;
+
+import java.util.Observable;
+
+public class Model extends  Observable{
+
+	private  int  nchars ;
+	public void  setcount(String  newText){
+		nchars = newText.length();
+		notifyAll();
+	}
+	public int  GetCount(){
+		return nchars ;
+	}
+}

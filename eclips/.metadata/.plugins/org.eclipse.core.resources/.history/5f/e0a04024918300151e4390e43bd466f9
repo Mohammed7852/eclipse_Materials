@@ -1,0 +1,275 @@
+package huffmand;
+
+import java.math.BigDecimal;
+import java.util.*;
+
+
+public class hufmand {
+
+	private Set<Character> set = new HashSet<Character>();
+	private  Scanner cin=new Scanner(System.in);
+ 	private  int size  , max   ; 
+  	private Stack<List<Double>> s = new  Stack();
+	private Stack<List<Double>> stack = new  Stack();
+   	private List<String> lcodes= new ArrayList();
+	private  String  s1="0" , s2 = "1" , string , st = "";
+	private List<Double> problist = new ArrayList();
+	private Map<Character,String > map = new HashMap();
+	private List<String> compressedlist  =new ArrayList();
+	
+	
+	/**
+	 * method  calculates  codes
+	 */
+ 
+		public void codes()
+  	{
+  		//System.out.println(s);
+  		
+  		List<String> l1  =new ArrayList();
+  		List<String> l2  =new ArrayList();
+  		List<Double> ld1   = new ArrayList();
+  		List<Double> ld2   = new ArrayList();
+  		
+  		int  i = 0 ;
+  		int stacksize = s.size();
+  		while(!s.isEmpty())
+  		 {
+  			
+  			 if(i==stacksize-1)break;
+  			 ld1 = s.pop() ;
+  			 l1  = new ArrayList();
+  			 
+  			 if(i==0)
+  			 {
+  				 l1.add(s1);
+  				 l1.add(s2);
+  				 //i=5;
+  			 }
+  			 else 
+  			 {
+  				 Double res = 0.0;
+  				 int  count = 0 ;
+  				 int sz= ld1.size();
+  				 int c= 0 ;
+  				 for(int  j=0 ; j <sz ;  j ++)
+  				 {
+  					 int  index = ld2.indexOf(ld1.get(j));
+  					 
+  					 c++ ;
+  					  
+  					 
+  					  if(c <=sz-2)
+  					 {
+    					 l1.add(l2.get(index));
+  					 }
+  					 else
+  					 {
+  						 count++ ;
+  						 res  +=  x ;  
+  						 if(count==2)
+  						 {
+  							 count = 0;
+  							 index = ld2.indexOf(res);
+  							
+  							
+  							 if(index!=-1)
+  							 {
+  								 //System.out.print("res="+res+"   "+index+"   \n");
+	  							 l1.add(l2.get(index)+s1);
+	  							 l1.add(l2.get(index)+s2);
+  						     }
+    					 }
+  					 }
+  					 
+  				 }//end for
+  				 
+  				 
+  				 
+  			 }//end if
+  			 
+  			 
+  			
+  			//System.out.println("l2="+l2+"     "+"ld2="+ld2+"\n");
+  			
+  			l2 = new ArrayList(l1) ;
+   			ld2 = new ArrayList(ld1) ;
+   			
+   			 lcodes = l2;
+   			 
+  			System.out.println("l2="+l2+"     "+"ld2="+ld2+"\n");
+  			i++;
+   		 }//end while
+  		 
+  		
+   		// lcodes = l2 ;//v.get(v.size()-1);
+  		 
+  		l1 = new ArrayList();
+  		  List<Double> temp = s.pop();
+  		
+  		
+  		 for(Double d : temp)
+  		{
+  			int  index = ld2.indexOf(d);
+  			l1.add(l2.get(index));
+  		}
+  		 System.out.println("  final   \n\n"+temp+"\n+"+l1+"");
+  		 //lcodes=l1
+  	}//end codes 
+  
+  	public void calculateprobability()
+  	{
+  		List<Character> list = new ArrayList<Character>();
+ 		List<Double> L = new ArrayList();
+ 		
+ 		for(Character c : string.toCharArray() )
+ 		{
+ 			list.add(c);
+			set.add(c); 		
+		}
+ 		
+		 
+		
+		for(Character c : set)
+		{
+  		    Double x =   (double) (Collections.frequency(list, c) );
+  		    Double sz=  (double) string.length() ;
+  		    Double res = x/sz ;
+  		    double d = new BigDecimal(res).setScale(1,BigDecimal.ROUND_HALF_UP).doubleValue();
+  		    
+  		    L.add( d);
+		}
+		
+		problist = L ;
+	//	System.out.println(set+"    "+L+"\n");
+		//setlist(problist);
+  	}
+  	/**
+  	 * Assigns  user string to class string 
+  	 * @param str
+  	 */
+  	public List<String>  Compress(String  str)
+  	{
+  		this.string = str ;
+  		calculateprobability();
+  		setlist(problist);
+  		codes();// to get codes for  all chars 
+		//print();
+		
+		int  i= 0 ;
+		for(Character c : set)
+		{
+			//int x = Integer.parseInt(lcodes.get(i++));
+			map.put(c ,lcodes.get(i++));
+		}
+		
+		
+		for(Character c : string.toCharArray())
+		{
+			compressedlist.add(map.get(c));
+		}
+		
+		System.out.print("Compressed files  is  ::\n"+compressedlist+"\n");
+		return  compressedlist;
+  	}
+  	
+  	/**
+  	 * prints  prob  and  codes 
+  	 */
+  	public void print()
+  	{
+  		System.out.println("\n\tprint:\n"+stack.get(0)+"    "+lcodes+"\n");
+  	}
+  		 
+  	
+  	
+  	
+	void setlist(List<Double> l  )
+	{ 
+		s.push(new ArrayList(l));
+		stack.push(new ArrayList(l));
+	
+		l.sort(null);
+		Collections.reverse(l);
+		
+		recursive(l);//calls method recursive to get all probs 
+		
+		//System.out.println(s.pop());
+	}//end of setlist
+	
+	/**
+	 * 
+	 * @param l
+	 */
+	void recursive(List<Double> l)
+	{
+		s.push(new ArrayList(l));
+		stack.push(new ArrayList(l));
+		
+ 		if(l.size()==2)
+		{
+			//System.out.println(s.pop());
+			return ;
+		}
+	 	
+ 		 List<Double> list = new ArrayList();
+ 		 list = l ;
+ 		 int sz = list.size();
+ 		 list.set(sz-2, l.get(sz-2)+l.get(sz-1));/*************/
+ 		 list.remove(sz-1);
+ 		 list.sort(null);
+ 		 Collections.reverse(list);
+ 		 
+ 		 recursive(list);
+ 		//System.out.println(s.pop());
+ 	
+  		 
+	}//end recursive
+	
+	/******/
+	/**
+	 * Decompression 
+	 */
+	/*******/
+	
+	public List<String> getcodes()
+	{
+		return lcodes;
+	}
+	
+	/***************************************************************/
+	
+	public void deconmpress( String str  , List<Character> characterlist , List<String> prob )
+	{
+		Map<String , Character > ma = new HashMap();
+		
+		int  i = 0 ;
+
+		for( Character  c : characterlist )
+		{
+			ma.put( prob.get(i++) , c);
+		}
+		
+		List<String> result = new ArrayList();
+		String res = "";
+		String  temp = "";
+		for( Character c : str.toCharArray())
+		{
+			temp+= c;
+               	boolean t = ma.containsKey(temp);
+               	if(t)
+               	{
+               		Character x = ma.get(temp);
+               		res+=x;
+               		temp="";
+               	}
+               
+		}
+		
+		
+		System.out.println("Your String  is  ::"+res+"\n\n");
+	}
+	
+	
+	
+}

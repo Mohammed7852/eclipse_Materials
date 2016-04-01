@@ -1,0 +1,13 @@
+package Assignment_1;
+
+import java.io.RandomAccessFile;
+
+public class Demo {
+
+	
+	
+	public static  void  main(String  [] args){
+		
+		 
+	}
+}

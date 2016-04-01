@@ -1,0 +1,10 @@
+package LectureCodes;
+
+import java.util.Observer;
+
+import javax.swing.JFrame;
+
+public class View  extends  JFrame implements  Observer{
+
+	
+}

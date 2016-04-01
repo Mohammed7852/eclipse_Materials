@@ -1,0 +1,143 @@
+package first;
+
+import java.util.*;
+import java.util.logging.Logger;
+import java.io.*;
+import java.nio.file.Files;
+
+public class FileUtils
+{
+	
+static String  directory = ""  ; 
+    public static boolean mkdir(String directory_name)
+    {
+        boolean result = false;  // Boolean indicating whether directory was set
+        File    directory;       // Desired current working directory
+
+        directory = new File(directory_name).getAbsoluteFile();
+        if (directory.exists() || directory.mkdirs())
+        {
+            result = (System.setProperty("user.dir", directory.getAbsolutePath()) != null);
+        }
+
+        return result;
+    }
+
+    public static PrintWriter openOutputFile(String file_name)
+    {
+        PrintWriter output = null;  // File to open for writing
+
+        try
+        {
+            output = new PrintWriter(new File(file_name).getAbsoluteFile());
+        }
+        catch (Exception exception) {}
+
+        return output;
+    }
+
+     static void  getallfiles(File currentdir)
+    {
+    	File [] FileList = currentdir.listFiles();
+    	
+    	for ( File f  : FileList)
+    	{
+    		if(f.isDirectory())
+    			System.out.println(f.getName());
+    		 if(f.isFile())
+    			 System.out.println(f.getName());
+    	}
+    }
+    
+     public static  void copyfile(File From , File to) throws IOException 
+     {
+    	 System.out.print("now we copy:\n");
+    	 Files.copy(From.toPath() , to.toPath());
+     }
+     ///////////////////
+    
+     
+     
+     
+     
+     
+     
+     
+     
+     public static void main(String[] args) throws Exception
+    {
+    	Scanner cin =new Scanner(System.in);
+    	 
+    	int choice =5; 
+    	directory ="E:/OSAssignment";
+
+    	System.out.print("\n\t1)change directory.\n\t2)mkdir.\n\t3)ls.\n\t4)rmdir.\n\t5)clean.\n\t6)help.\n\t7)copy\nEnter your choice::");
+    	choice= cin.nextInt();
+    	while(choice>0)
+    	{
+    		if(choice==1)
+    		{
+    			System.out.println("Enter new directory ::");
+    			cin.nextLine();
+    			directory = cin.nextLine();
+    		}
+    		else if(choice==2)
+    		{
+    	    	String  newdir ;
+    	    	System.out.println("Enter File name  :");
+    	    	newdir = cin.nextLine();
+    	    	FileUtils.mkdir(directory+"/"+newdir);
+    		}
+    		else  if(choice==3)
+    		{
+    			File curdir = new  File(directory);
+    	    	FileUtils.getallfiles(curdir);
+     		}
+    		else  if(choice==4)
+    		{
+    			
+    		}
+    		else  if(choice==5)
+    		{
+    			
+    		}
+    		else  if(choice==6)
+    		{
+    			
+    		}
+    		else  if(choice==7)
+    		{
+    			 String  from  , to ;
+    		        from = directory+"/1" ;
+    		        to= directory+"/2";
+    		        
+    		        File dirfrom  = new File(from);
+    		        File dirto =new File(to);
+    		        
+    		        try
+    		        {
+    		        	copyfile(dirfrom, dirto);
+    		        }
+    		        catch(IOException x)
+    		        {
+    		        	System.out.println("cannot copy . \n\n");
+     		         }
+    		}
+    		else  if(choice==8)
+    		{
+    			
+    		}
+        	System.out.print("\n\t1)change directory.\n\t2)mkdir.\n\t3)ls.\n\t4)rmdir.\n\t5)clean.\n\t6)help.\nEnter your  choice::");
+           choice = cin.nextInt();
+    	}
+
+    	
+        
+       
+
+    }
+
+
+
+}
+

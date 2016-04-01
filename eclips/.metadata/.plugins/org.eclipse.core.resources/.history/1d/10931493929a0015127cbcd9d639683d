@@ -1,0 +1,15 @@
+package Vector_Quantization;
+ 
+public class reader extends Thread{
+	buffer buff;
+	String name;
+	public reader (String name,buffer buff){
+		this.name=name;
+		this.buff=buff;
+	}
+	public void run (){
+		System.out.print(this.name+" ");
+		buff.read();
+	}
+
+}

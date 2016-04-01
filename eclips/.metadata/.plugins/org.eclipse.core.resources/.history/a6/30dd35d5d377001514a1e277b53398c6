@@ -1,0 +1,40 @@
+package first;
+
+import java.util.*;
+import java.io.*;
+
+public class file_manipulation {
+
+	public static void main(String[] args)   {
+		 
+		
+		FileOutputStream out = null ;
+		FileInputStream in = null ; 
+		
+		
+		try {
+			
+			out= new FileOutputStream("output.txt");
+			in = new FileInputStream("input.txt");
+			
+			int x ; 
+			
+			while((x = in.read())!= -1 )
+			{
+				out.write(x);
+			}
+
+		}finally {
+	         if (in != null) {
+	             in.close();
+	          }
+	          if (out != null) {
+	             out.close();
+	          }
+		 
+		 
+		
+		
+	}
+
+}

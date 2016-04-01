@@ -1,0 +1,13 @@
+package Assignmen_2;
+
+public class object {
+
+	static int x  ;
+	static int  y  ;
+	 public static void  set(int a,int b){
+		 x=a;
+		 y=b;
+	 }
+	 
+	 
+}

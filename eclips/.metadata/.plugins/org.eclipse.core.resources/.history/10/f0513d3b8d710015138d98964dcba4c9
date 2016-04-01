@@ -1,0 +1,88 @@
+
+public class Spanish_Meal {
+
+	private double  price  ;
+	private double  weight ;
+	private  String  [] supplier  ;
+	private  int  type ;
+	
+	/*
+	 * @this  is  a default constructor to initialize class attributes 
+	 */
+	
+	public Spanish_Meal() {
+		// TODO Auto-generated constructor stub
+	}
+	/*
+	 * parameterized constructor  to assign values to class attributes 
+	 */
+	Spanish_Meal(double p , double w  ,int  t  , String  s)
+	{
+		setprice(p);
+		setweight(w);
+		settype(t);
+		setsupplier(s);
+	}
+	
+	/*
+	 * a method assigns value to the price attribute
+	 * @return no return value 
+	 */
+	public void setprice(double p)
+	{
+		this.price=p;
+	}
+	
+	/*
+	 * a method that gives the value of price 
+	 * @return returns a double value
+	 */
+	public double getprice()
+	{
+		return price;
+	}
+	
+	/*
+	 * a method assigns value to the weight attribute
+	 * @return no return value 
+	 */
+	public void setweight(double w)
+	{
+		this.weight=w;
+	}
+	
+	/*
+	 * a method that gives the value of price 
+	 * @return returns a double value
+	 */
+	public double getweight()
+	{
+		return weight ;
+	}
+	
+	
+	public void settype(int t)
+	{
+		type=t ; 
+	}
+	
+	public int gettype()
+	{
+		return type ;
+	}
+	
+	public void setsupplier(String []s)
+	{
+		supplier = s ;
+	}
+	
+	public void showsupplier()
+	{
+		 for(String s : supplier)
+		 {
+			 System.out.print(s+"\n");
+		 }
+	}
+	
+	
+}

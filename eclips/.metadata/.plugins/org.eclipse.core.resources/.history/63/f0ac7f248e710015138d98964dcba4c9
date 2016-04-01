@@ -1,0 +1,9 @@
+
+public class open_natural_grassland  extends Spanish_Meal{
+
+	
+	open_natural_grassland(double p , double w  ,int  t  , String  s)
+	{
+		super(p , w , t , s);
+	}
+}

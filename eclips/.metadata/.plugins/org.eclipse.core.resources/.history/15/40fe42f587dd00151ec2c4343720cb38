@@ -1,0 +1,77 @@
+package Assignment_1;
+import java.util.*;
+import java.io.RandomAccessFile;
+public class Demo {
+ 	static Scanner cin = new Scanner(System.in);
+ 	public static  void  main(String  [] args)throws Exception{		
+ 		 RandomAccessFile  file = new RandomAccessFile("file.txt", "rw");
+		Demo demo = new Demo();
+		int choice  ;
+		System.out.println("Enter your choice :");
+		choice = cin.nextInt();
+		while(choice>0){
+			if(choice==1){
+				
+			}else if(choice==2){
+				
+			}else  if(choice==3){
+				
+			}else  if(choice==4){
+				
+			}else if(choice==5){
+				
+			}else if(choice==6){
+				
+			}
+			System.out.println("Enter your choice :");
+			choice = cin.nextInt();
+		}//end while
+ 	}//end main
+	public void CreateRecordsFile(String filename, int numberOfRecords) {
+		
+	}
+	public void InsertValue (String filename, int RecordIndex, int RecordValue){
+		
+	}
+	public void DisplayAllRecords (String filename){
+		
+	}
+	public void DisplayARecordValue(String filename, int RecordIndex) {
+		
+	}
+	public void ReplaceVlauesOfTwoRecords(String filename, int FirstRecordIndex,int
+			SecondRecordIndex){
+		
+	}
+	public static void operations(){
+		List<node> list = new ArrayList();
+		node  n = new node();
+		n.setindex(0);
+		n.setvalue(5);
+		list.add(n);
+		n = new  node();
+		n.setindex(1);
+		n.setvalue(6);
+		list.add(n);
+		
+		System.out.println(list);
+	}
+	public static class node {
+		int index ;
+		int value;
+		public void setindex(int in){
+			index=in;
+		}
+		public void setvalue(int v){
+			value=v;
+		}
+		public int getindex(){return index;}
+		public int getvalue(){return value;}
+		@Override
+		public String toString(){
+			return "index="+getindex()+" and  value="+getvalue();
+		}
+	}//
+	
+	
+}//

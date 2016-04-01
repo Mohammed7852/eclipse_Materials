@@ -1,0 +1,26 @@
+package huffmand;
+
+import java.util.*;
+import  java.util.TreeMap;
+
+
+public class hufmand {
+
+	private  Scanner cin=new Scanner(System.in);
+ 	private  int size  , max   ; 
+	private  Vector<Double> v = new Vector();
+	private  Double []arr = new Double [100] ;
+	private  Double  []arr2 ;
+	private Stack<List<Double>> s = new  Stack();
+	
+	void setlist(List<Double> l  )
+	{
+		
+	}
+	
+	void recursive(List<Double> l)
+	{
+ 		 
+	}//end void 
+	
+}

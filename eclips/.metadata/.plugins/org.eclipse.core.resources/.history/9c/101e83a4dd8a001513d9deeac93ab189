@@ -1,0 +1,20 @@
+package Arithmatic_coding;
+
+public class Demo2 {
+
+	public static void main(String []args){
+		String str = "0.1100011";
+		String str2 = str.substring(0 , str.length()-1);
+		System.out.println(str2);
+		
+		int  pow = (int) Math.pow(2,str.length()-2) ;
+		System.out.println(pow);
+		str = str.substring(2, str.length()) ;
+		System.out.println(str);
+		Double d  = (double) Integer.parseInt(str, 2);
+		System.out.println(d);
+		double res =  (d/pow) ;
+		
+		System.out.println(res);
+	}
+}

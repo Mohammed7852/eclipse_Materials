@@ -1,0 +1,51 @@
+package Vector_Quantization;
+import java.util.*;
+public class Semaphore {	
+static buffer buff;
+public  static void main (String []args){
+  String initialbuff="";
+  int Numberofwriterthreads=0;
+  int Numberofreaderthreads=0;
+  Scanner sc=new Scanner(System.in );
+  System.out.println("Initial Buffer Content-------->");
+  initialbuff=sc.nextLine();
+  System.out.println("Number of reader threads --------->");
+  Numberofreaderthreads=sc.nextInt();
+  System.out.println("Number of writer threads --------->");
+  Numberofwriterthreads=sc.nextInt();
+   buff=new buffer (initialbuff);
+    //===============================================================
+    System.out.print("\n Reader Threads :\n");
+   String Name_th="";
+   reader readers[]=new reader[Numberofreaderthreads];
+   for(int i=0;i<Numberofreaderthreads;i++){
+	   Name_th=sc.next();
+	   reader rth=new reader(Name_th,buff);
+	   readers[i]=rth;
+            //readers[i].start();
+   }
+   
+   //===================================================================
+   
+   System.out.print("\n writer Threads :\n");
+   String Name_wth="";
+   String text="";
+   writer writerss[]=new writer[Numberofwriterthreads];
+   for(int i=0;i<Numberofwriterthreads;i++){
+	   Name_wth=sc.next();
+	   text=sc.next();
+	   writer wth=new writer(Name_wth,buff,text);
+	   writerss[i]=wth;
+            //writerss[i].start();
+   }
+   //================================
+   //start run all threads
+   System.out.print("===================================\n");
+   for(int i=0 ;i<Numberofreaderthreads;i++){
+	   readers[i].start();
+   }
+   for(int i=0 ;i<Numberofwriterthreads;i++){
+	   writerss[i].start();
+   }
+}
+}

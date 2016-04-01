@@ -1,0 +1,14 @@
+package LectureCodes;
+
+import java.util.Observer;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+public class View  extends  JFrame implements  Observer{
+
+	private  JTextField text  = new  JTextField ();
+	public  view(Model givenModel){
+		
+	}
+}

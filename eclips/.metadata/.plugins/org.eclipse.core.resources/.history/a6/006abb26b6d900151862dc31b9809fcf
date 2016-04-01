@@ -1,0 +1,12 @@
+package Assignment_1;
+import java.io.RandomAccessFile;
+public class Demo {
+	public static  void  main(String  [] args)throws Exception{		
+		 RandomAccessFile  file1 = new  RandomAccessFile("Mohammed.txt", "rw");
+		 file1.seek(0);
+		 file1.writeInt(999);
+ 		 int  x  =file1.readint();
+ 		 System.out.println(x+"\n");
+		 file1.close();
+	}
+}

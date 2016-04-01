@@ -1,0 +1,38 @@
+package huffmand;
+
+import java.util.*;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner cin = new Scanner(System.in);
+		
+		List<Double> L = new ArrayList();
+		Double [] arr = {0.17 ,0.22,0.15,0.14,0.3,0.02};
+		hufmand  h  = new hufmand  ();
+ 	   Stack<Double> s  =new Stack();
+		L.add(0.17);
+	    L.add(0.22);
+	    L.add(0.15);
+	    L.add(0.14);
+	    L.add(0.30);
+	    L.add(0.02);
+	    
+	    s.push(0.17);
+	    s.push(0.22);
+	    s.push(0.15);
+	    s.push(0.14);
+	    s.push(0.30);
+	    s.push(0.02);
+	    
+	   h.setlist(L);
+	 //h.recursive();
+		
+		
+		
+		//System.out.println(s);
+		
+	}//end main
+
+}//end class

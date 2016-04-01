@@ -1,0 +1,102 @@
+package LZW;
+
+import  java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import  java.io.*;
+
+public class Test_LZW {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		Scanner  cin = new  Scanner(System.in);
+		String  tem = "65  66  65 128 128 129 131 134 130 ";
+		
+		LinkedList<String> ll = new LinkedList<String>();
+		Pattern p = Pattern.compile("\\d+");
+		List<String> l = new ArrayList();
+		
+		Matcher m = p.matcher(tem);
+		
+		while(m.find())
+		{
+			ll.add(m.group());
+ 		}
+		  
+		l.addAll(ll);
+		System.out.print(l+"\n\n");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		 
+		LZW comp = new LZW();
+		List<String> l =new ArrayList();
+		l.add("Mohammed");
+		
+		String str  = "ABAABABBAABAABAAAABABBBBBBBB";
+ 		comp.setoriginal(str);
+		comp.Compress();
+		comp.Decompress();
+ 
+
+		int choice  ;
+		System.out.println("Enter your choice :\n"
+				+ "1)compress only.\n"
+				+ "2)decompress only.\n"
+				+ "3)both functions.\n");
+ 		choice =cin.nextInt();
+ 		while(choice>0)
+ 		{
+ 			if(choice==1)
+ 			{
+ 				comp = new LZW();
+ 				System.out.print("\nEnter your String:");
+ 				str= cin.next();
+ 				comp.setoriginal(str);
+ 				comp.Compress();
+ 			}
+ 			else if(choice==2)
+ 			{
+ 				comp = new LZW();
+ 				comp.setcodes();
+ 				comp.Decompress();
+ 			}
+ 			else if(choice==3)
+ 			{
+ 				comp = new LZW();
+ 				System.out.print("\nEnter your String:");
+ 				str= cin.next();
+ 				comp.setoriginal(str);
+ 				comp.Compress();
+ 				comp.Decompress();
+ 			}
+ 			System.out.println("Enter your choice :\n"
+ 					+ "1)compress only.\n"
+ 					+ "2)decompress only.\n"
+ 					+ "3)both functions.\n");
+ 	 		choice =cin.nextInt();
+ 		}
+		
+ 		
+		
+		
+	}
+
+	 
+}

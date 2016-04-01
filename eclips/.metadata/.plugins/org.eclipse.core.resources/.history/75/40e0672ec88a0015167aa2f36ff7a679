@@ -1,0 +1,15 @@
+package Arithmatic_coding;
+
+public class Decompression {
+
+	private  String  str1 , str2  ,str3  ; 
+	
+	
+	 public void decompress(){
+	
+		 
+	 }
+	
+	
+}//class
+

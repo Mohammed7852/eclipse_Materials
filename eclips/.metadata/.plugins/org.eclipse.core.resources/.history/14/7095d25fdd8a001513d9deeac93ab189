@@ -1,0 +1,18 @@
+package Arithmatic_coding;
+import java.io.IOException;
+import java.util.*;
+
+public class Demo {
+
+
+	
+	public static void main(String[] args) throws IOException {
+ 		Compression c = new  Compression();
+		Decompression dc = new  Decompression();
+		
+		//c.compress();
+		dc.decompress();
+		
+		}//main
+
+}

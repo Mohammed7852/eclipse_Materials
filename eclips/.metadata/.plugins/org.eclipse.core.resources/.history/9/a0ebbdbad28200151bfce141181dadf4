@@ -1,0 +1,61 @@
+package huffmand;
+
+import java.util.*;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner cin = new Scanner(System.in);
+		
+ 		ArrayList<Character> list = new ArrayList<Character>();
+ 		List<Double> L = new ArrayList();
+		String str = "abaacaadaa";
+		
+		for(int  i= 0 ; i <str.length() ; i ++)
+		{
+			list.add(str.charAt(i));
+		}
+		Double  x  = 0.0 ;
+		Double sz  = 0.0 ;
+		
+		for(Character c : list)
+		{
+  		    x =   (double) (Collections.frequency(list, c) );
+  		    sz=  (double) str.length() ;
+		}
+		
+  		Double res = Double.valueOf(x/sz);
+  		 
+		System.out.println(res);
+		System.out.println();
+		 
+		
+		
+		
+		
+		Double [] arr = {0.17 ,0.22,0.15,0.14,0.3,0.02};
+		hufmand  h  = new hufmand  ();
+ 	   Stack<Double> s  =new Stack();
+		L.add(0.17);
+	    L.add(0.22);
+	    L.add(0.15);
+	    L.add(0.14);
+	    L.add(0.30);
+	    L.add(0.02);
+	    
+	    s.push(0.17);
+	    s.push(0.22);
+	    s.push(0.15);
+	    s.push(0.14);
+	    s.push(0.30);
+	    s.push(0.02);
+	    
+	   h.setlist(L);
+ 		
+		
+	//System.out.println((1/10))   
+	   
+	}//end main
+
+}//end class

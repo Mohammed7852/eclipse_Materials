@@ -1,0 +1,37 @@
+package LectureCodes;
+
+import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class View  extends  JFrame implements  Observer{
+
+	private  JTextField text  = new  JTextField ();
+	private  JLabel counter  = new  JLabel();
+	private  Model model ;
+	
+	public  View(Model givenModel){
+		this.model = givenModel ;
+		model.addObserver(this);
+		setTitle("Type text to count its Characters .");
+		setSize(300,100);
+		setLayout(new  GridLayout(2,1)) ;
+		text.addActionListener(new  Controller());
+		add(text);
+		add(counter);
+		setVisible(true);
+	}
+	 
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		counter.setText(getName());
+		
+	}
+	
+	
+}

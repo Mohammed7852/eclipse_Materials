@@ -1,0 +1,8 @@
+
+public class raised_and_fed_on_natural_food extends Spanish_Meal{
+
+	raised_and_fed_on_natural_food(double p , double w  ,int  t  , String  s)
+	{
+		super(p , w , t , s);
+	}
+}

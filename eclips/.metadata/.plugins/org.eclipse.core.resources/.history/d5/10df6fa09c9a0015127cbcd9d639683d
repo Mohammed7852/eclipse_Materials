@@ -1,0 +1,25 @@
+package Vector_Quantization;
+ 
+//import buffer;
+
+public class writer extends Thread{
+	
+	String name;
+	buffer buff;
+	String Text;
+	
+	public writer(){
+		name="";
+		Text="";
+	}
+	public writer(String name,buffer buff,String inputText){
+		this.name=name;
+		this.buff=buff;
+		 this.Text= inputText;;
+	}
+	public void run (){
+		System.out.print(this.name+" ");
+		buff.write(Text);
+	}
+
+}

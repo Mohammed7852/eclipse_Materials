@@ -1,0 +1,53 @@
+package Arithmatic_coding;
+
+import  java.util.*;
+import java.io.*;
+
+public class Decompression {
+
+	private  String  str1 , str2  ,str3  ; 
+	private  Double  Result  ; 
+    private List<Double> problist = new ArrayList();
+	private  List<Character> chars = new ArrayList();
+	private  List<Double> Low = new ArrayList();
+	private  List<Double> up  = new ArrayList();
+	
+	/********************************************************/
+	 
+	public void decompress() throws IOException{
+	   
+		Reader r = new FileReader ("output.txt");
+		BufferedReader br = new  BufferedReader(r);
+		String temp = "" ;
+		if(br.ready())
+		     temp = br.readLine();
+		
+		System.out.println(temp+"\n");;
+		Result = Double.parseDouble(temp);
+		
+		br.close();
+		r  = new FileReader("Dictionary.txt");
+		br  = new  BufferedReader(r);
+		if(br.ready())
+		temp = br.readLine();
+		br.close();
+		
+		problist.add(0.8);
+		problist.add(0.02);
+		problist.add(0.18);
+		
+		List<Double> l = new ArrayList();
+		List<Double> u = new ArrayList();
+		
+		
+		
+		
+		
+		
+	 }//decompress
+	
+	
+	
+	
+}//class
+

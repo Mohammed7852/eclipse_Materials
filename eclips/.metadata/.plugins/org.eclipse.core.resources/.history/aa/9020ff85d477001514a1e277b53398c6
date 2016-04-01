@@ -1,0 +1,22 @@
+package first;
+
+import java.util.*;
+import java.io.*;
+
+public class file_manipulation {
+
+	public static void main(String[] args) throws IOException   {
+		 
+		Formatter    x  = new Formatter("output.txt");
+		x.format("%s%s", 4566);
+		x.close();
+		
+		Scanner cin = new Scannner("output.txt");
+		 
+		
+
+		
+		
+	}
+
+}

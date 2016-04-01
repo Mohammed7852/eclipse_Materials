@@ -1,0 +1,313 @@
+import java.util.ArrayList ;
+import java.util.List ;
+import java.util.*;
+import java.util.Vector;
+    
+
+public class Demo 
+{
+
+	
+	public static void main(String[] args)
+	{
+ 		
+		Scanner cin = new Scanner(System.in) ;
+		 
+		List<Spanish_Meal>  list = new ArrayList();
+		 Spanish_Meal m = new Spanish_Meal();
+		  	 
+              
+		 int  choice ,  x ,y  ,z  ,b ,c  ,d ,c1=0 , c2 =0 , c3=0 ,  c4 = 0  , id    ,type ;
+		 double a  ;
+		 double  p1 =0, p2 =0 ,p3=0 , p4 =0  ,w1 =50 , w2=60  ,w3=200  ,w4=800  ;
+		 String  name ;
+		 
+		 System.out.println("\t\tthis is  for stock::\nHow  many suppliers  ::");
+		 x = cin.nextInt();
+		 
+		 for(int  i= 0 ;i <x  ;i++)
+		 {
+		 
+			 System.out.println("name  of  supplier<"+(i+1)+">::");cin.nextLine();name  = cin.nextLine();
+			 System.out.println("number  of  shipments  ::");y = cin.nextInt();
+ 
+			 for(int  j= 0 ;j<y ;j++)
+			 {
+				 System.out.println("shippment<"+(j+1)+">::");
+				 System.out.println("type  ::");type= cin.nextInt();
+				 
+				 if(type  == 1)
+				 {
+					 if(p1==0)
+					 System.out.println("enter the min. price for the first type  ::");p1 = cin.nextDouble();
+					 
+					 m = new open_natural_grassland(p1  , w1 , type , name );
+					 c1++;
+					 
+				 }else  if(type ==2)
+				 {
+					 if(p2==0)
+					 System.out.println("enter the min. price for the second type  ::");p2 = cin.nextDouble();
+
+					 m = new raised_and_fed_on_natural_food(p2  , w2 , type , name ); 
+					 c2++;
+				 }else  if(type  ==3)
+				 {
+					 if(p3==0)
+					 System.out.println("enter the min. price for the third type  ::");p3 = cin.nextDouble();
+
+					 m = new fed_on_natural_and_manufactured_food(p3  , w3 , type , name ); 
+					 c3++;
+				 }else if(type  ==4)
+				 {
+					 if(p4==0)
+					 System.out.println("enter the min. price for the fourth type  ::");p4= cin.nextDouble();
+
+					 m = new fed_on_manfacured_feed(p4  , w4 , type , name ); 
+					 c4++;
+				 }else System.out.println("in valid pressing.\n");
+				 
+				 list.add(m);
+				 
+			 }//end  of  j for
+			 
+			 p1=p2=p3=p4=0;
+ 		 }//end of  i for
+		
+		  
+		 
+		 int sz = list.size();
+		 System.out.println("haaaay  gyues  we  have <"+sz+"  shippments,,,"+" :::");
+
+		 int count = 0;
+		 while(count<sz)
+		 {
+			 System.out.println(list.get(count++));
+		 }//end  of while 
+		 
+		 System.out.println("Enter number  of customers  ::");
+		 x  = cin .nextInt();
+		 
+		 /*************************/
+		 customer []Array_Customer = new customer[x];
+		 
+		 System.out.println("plz ,, specify shared money of  them ::");
+		 y = cin.nextInt();
+		 
+		 /////////////////////////////
+		 int   []array = new  int [x];
+		 for(int i=0;i<x;i++)array[i]=y;
+		 
+		 ///////////////////////////////
+		 int []Array = new  int [x];
+		 List<Integer> [] Lis = new ArrayList[x];
+		 
+		 for(int i= 0 ;i<sz ; i++)
+		 {
+			 System.out.println("\tShippment no. <"+(i+1)+"> >>>\n");
+			 System.out.println("Type of  Meal :"+list.get(i).gettype());
+			 System.out.println("Supplier is  :"+list.get(i).getsupplier()+"\n"
+			 		+ "Minimum price  is  :"+list.get(i).getprice()+"\n");
+			 double  price = list.get(i).getprice();
+			 type = list.get(i).gettype();
+			 
+			 
+			 
+			 System.out.println("\tCustomer <1> ,, enter your price ::");
+			 a = cin.nextInt();
+			 
+			 if(array[0]>=a)
+			    array[0]-=a ;
+			  else System.out.println("you have no enought money.\n");
+			
+			  double  mx = a  ;
+			 int  index = 0 ;
+			 
+			 for(int j=1 ;j<x  ;j++)
+			 {
+				 System.out.println("\tcustomer : <"+(j+1)+"> ,, enter your price ::");
+				 a  = cin.nextInt();
+ 
+				 if(array[j]>=a)
+				 {
+					 array [j]-= a;
+					 if(a>mx)
+					 {
+					 	mx=a;
+					 	index = j ;
+					 }
+				 }else System.out.println("you have no enought money.\n");
+			 	
+				 
+			 }//end j for  
+			 
+			 System.out.println("The choosed customer is  :("+(index+1)+")  and  max is  :("+mx+")\n");
+			 		
+			 			if(mx > price )
+						 {
+			 			   System.out.println("Customer <"+(index+1)+">  gets the shippment ^_^..\n");
+			 			   Array[index]++;
+			 			   //Lis[index].add(type);
+			 			   // Array_Customer[index].settype(type);
+						 list.get(i).set_flag();
+						 }
+				
+			 			System.out.println("we are  outer  loop.\n");
+			 		////////////////
+			 		boolean temp = true ;//to check if  the all customers  have  no money 
+			 		 for(int  j=0 ;j<x  ;j++)
+			 		 {
+			 			 if(array[j]>0){temp=false  ;break;}
+			 		 }
+			 		 if(temp)
+			 		 {
+			 			 System.out.print("no money for  all customers ...!!^_^\n");break;
+			 		 }
+			 		 
+			 		 
+			 			 
+		 }//end i for 
+		 
+		 System.out.println("now we  check who is the  winner .\n");
+		 
+		 
+   		 int  max ;
+  		  
+   		 //max  ::take  the  value  of  maximum size 
+ 		 
+  		 Stack<Integer> check = new  Stack();
+  		 
+  		max=Lis[0].size();
+		check.push(0);
+		
+ 		 for(int i=1 ;i<x  ;i++)
+		 {
+  			 
+			 if(Lis[i].size()>max)
+				 {
+				 	max=Lis[i].size();
+				 	check.clear();
+				 	check.push(i);
+				 }
+			 else if(Lis[i].size()==max)
+				 check.push(i);
+			 
+		 }//end for
+			
+		 System.out.println("max  customer  list size  is :"+max+"    and  indexes of max lists  ::"+check+"\n");
+		 
+		 ///now  we need  to know the indexes of  max size 
+		 //and  put  them in list max_size()
+		 
+		 max= 0 ;
+		 c= 0 ;
+		 
+		 Stack<Integer> st = new  Stack();
+
+		 while(!check.empty())
+		 {
+			 int index = check.pop();
+			 int  counter = 0 ;
+			 
+			 for(int  i=0 ;i< max ;i++)
+			 {
+				 if(Lis[index].get(i)==1)counter+=4;
+				 else if(Lis[index].get(i)==2)counter+=3;
+				 else if(Lis[index].get(i)==3)counter+=2;
+				 else if(Lis[index].get(i)==4)counter+=1;
+			 }
+			 if(c==0)
+			 {
+				 max=counter;
+				 st.push(c);
+			 }
+			 else if(counter>max)
+			 {
+				 max=counter;
+				 st.clear();
+				 st.push(c);
+			 }
+			 else if(counter==max)
+			 {
+				 st.push(c);
+			 }
+			 
+			 c++;
+		 }//end while
+		 
+		 System.out.println("Winner  Customer  is  ::"+st.toString()+"");
+		 
+		 /////////////////////////////////////////////////////////////////////////////////////
+		 List<Integer> max_size  = new  ArrayList();
+		
+		 for(int  i =  0 ;i<x ;i++  )
+		 {
+			// if(l[i].size()==max)max_size.add(i);
+		 }//end  for 
+		 
+		 ///and  then we  compare the best customers  to get the first one  (winner)
+		// System.out.println("list include max sizes  are  ::"+max_size.toString()+"\n\n");
+		 
+		   c = 0 ;
+		  int index =0;
+		 
+		  
+		 while( c < max_size.size() )
+		 {
+			  int n  =   max_size.get(c);
+			  
+			  int  counter = 0 ;
+//			 
+//			  for( int  j=0 ;j<n ;j++)
+//			  {
+//				  if((int)l[c].get(j)==1)counter+=4;
+//				  else if((int)l[c].get(j)==2)counter+=3;
+//				  else if((int)l[c].get(j)==3)counter+=2;
+//				  else if((int)l[c].get(j)==4)counter+=1;
+//			  }
+			  if(c==0)
+			  {
+				  max=counter ;
+				  st.push(c);
+			  }
+			  else if(counter>max)
+				  {
+				  		max=counter;
+				  		index = c ;
+				  		st.clear();
+				  		st.push(c);
+				  }else if(counter==max)
+				  {
+					  st.push(c);
+				  }
+			  c++;
+		 }/**end while*/
+		 
+		 System.out.println("winner customer is ::\n");
+		
+		 while(!st.empty())
+		 {
+			 System.out.println("customer number <"+(st.pop()+1)+">");
+		 }
+		 
+		 System.out.println("Customer no."+index+1+" is  winer ...congratolation..\n");
+		 
+		 
+		 
+		 
+		 
+		 
+	   	 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+	
+ 	}//end main
+ 
+
+}//end  class Demo

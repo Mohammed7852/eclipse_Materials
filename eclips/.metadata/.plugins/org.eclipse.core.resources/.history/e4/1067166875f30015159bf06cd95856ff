@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=windows-1256"
+	pageEncoding="windows-1256"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<title>HomePage</title>
+<center><p>Welcome to our program</p>></center>
+
+<body>
+
+<center>
+<h1><h2> if  you have a page press  <a href="/FCISquareApp/app/Login">Login</a>
+    if you Don't have a page <a href="/FCISquareApp/app/signUp">SignUp</a> 
+    if you want to show your location press <a href ="FCISquareApp/app/showLocation">Here</a>
+</h1>
+
+</center>
+
+
+</body>
+</html>
