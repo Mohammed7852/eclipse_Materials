@@ -1,0 +1,184 @@
+package com.models;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.mysql.jdbc.Statement;
+
+public class PlaceModel {
+
+	private  int  placeid  ;
+	private  double  placelat ;
+	private  double placelong  ;
+	private  String  description ;
+	private  String  name  ;
+	private  int numberofcheckins  ;
+	private  int  rate  ;
+	
+	
+	public int getPlaceid() {
+		return placeid;
+	}
+
+
+	public void setPlaceid(int placeid) {
+		this.placeid = placeid;
+	}
+
+
+	public double getPlacelat() {
+		return placelat;
+	}
+
+
+	public void setPlacelat(double placelat) {
+		this.placelat = placelat;
+	}
+
+
+	public double getPlacelong() {
+		return placelong;
+	}
+
+
+	public void setPlacelong(double placelong) {
+		this.placelong = placelong;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public int getNumberofcheckins() {
+		return numberofcheckins;
+	}
+
+
+	public void setNumberofcheckins(int numberofcheckins) {
+		this.numberofcheckins = numberofcheckins;
+	}
+
+
+	public int getRate() {
+		return rate;
+	}
+
+
+	public void setRate(int rate) {
+		this.rate = rate;
+	}
+
+
+	public static PlaceModel addnewplace (String  name  , String  description ){
+		
+
+		try {
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Insert into fcisquare.places "
+					+ "(`name`,`description` ) VALUES  (?,?)";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, name);
+			stmt.setString(2, description);
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			System.out.println("we  insert  new  place");
+			if (rs.next()) {
+				PlaceModel place  = new PlaceModel();
+				place.setPlaceid(rs.getInt(1));
+			    place.setName(name);
+			    place.setDescription(description);
+			    
+			    return place ;
+			}
+
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	public  static  int  getplaceid(String  placename){
+		System.out.println("we  are finding  place id "+ "  with name  ="+placename);
+		int placeID;
+		try{
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Select * from fcisquare.places where `placeName` = ? ";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, placename);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				System.out.println("yees");
+				placeID = rs.getInt(1);
+				System.out.println("found place id  = "+placeID);
+				return placeID;
+				}
+		
+ 	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		System.out.println("found place id  =no id ");
+
+	return 0;
+  	}
+	
+	
+	public static  PlaceModel  saveplace(String  name , int userid){
+		try {
+			int  placeid  =  getplaceid(name);
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Insert into fcisquare.userplace "
+					+ "(`userid`,`placeid` ) VALUES  (?,?)";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, placeid);
+			stmt.setInt(2, userid);
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			System.out.println("we  insert  new  place");
+			if (rs.next()) {
+				PlaceModel place  = new PlaceModel();
+				place.setPlaceid(placeid);
+			    place.setName(name);
+			    
+			    
+			    return place ;
+			}
+
+ 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+		
+	}
+	
+	
+	
+	
+}

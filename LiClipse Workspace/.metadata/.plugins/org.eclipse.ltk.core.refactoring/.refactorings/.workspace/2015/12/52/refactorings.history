@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;lap44444&apos; to &apos;lap9(SMTP)&apos;" description="Rename resource &apos;lap44444&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/lap44444" name="lap9(SMTP)" stamp="1450652604495" updateReferences="true"/>
+</session>

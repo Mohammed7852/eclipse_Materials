@@ -1,0 +1,14 @@
+package Assignmen_2;
+
+import  java.util.*;
+import  java.io.*;
+
+public class Runs {
+	public static void  main(String  []args) throws IOException{
+
+		RandomAccessFile ra = new RandomAccessFile("output.txt", "r");
+		int x  = (int)ra.length();
+		
+	}
+
+}

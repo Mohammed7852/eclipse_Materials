@@ -1,0 +1,51 @@
+package com.models;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import org.apache.tomcat.jdbc.pool.DataSourceFactory;
+
+
+
+import com.models.*;
+import com.mysql.*;
+import com.mysql.jdbc.Statement;
+
+public class CommentModel {
+
+	private int userID ;
+	private int CheckInID ;
+	
+	
+	public static void  addNewComment(String  text , int userid  , int  checkInID ){
+		
+	}
+	public static  void RemoveComment(int  CommentID){
+		
+	}
+	public static void  ShowComments(int checkInID){
+		
+	}
+	
+	
+	
+	public int getUserID() {
+		return userID;
+	}
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+	public int getCheckInID() {
+		return CheckInID;
+	}
+	public void setCheckInID(int checkInID) {
+		CheckInID = checkInID;
+	}
+	
+}

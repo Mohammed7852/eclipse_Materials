@@ -1,0 +1,13 @@
+'''
+Created on Mar 31, 2016
+
+@author: mohamed ali shabanah
+'''
+f = open( "foo.txt" )
+data = f.read()
+#data = data.strip( "\n" )
+#data = data.split( " " )
+state = []
+for element in data:
+    state.append( int( element ) )
+print(state,data)    

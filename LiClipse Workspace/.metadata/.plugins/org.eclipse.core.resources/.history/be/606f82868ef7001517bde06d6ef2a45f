@@ -1,0 +1,8 @@
+'''
+Created on Mar 31, 2016
+
+@author: mohamed ali shabanah
+'''
+file=open("foo.txt","wb")
+file.write("mohammed ali ")
+file.close

@@ -1,0 +1,57 @@
+package com.models;
+
+public class LikeModel {
+
+	private  int LikeID ;
+	private  int userid1 ;
+	private  int  userid2 ;
+	private  int  checkinID ;
+	private  int commentID ;
+	public int getLikeID() {
+		return LikeID;
+	}
+	public void setLikeID(int likeID) {
+		LikeID = likeID;
+	}
+	public int getUserid1() {
+		return userid1;
+	}
+	public void setUserid1(int userid1) {
+		this.userid1 = userid1;
+	}
+	public int getUserid2() {
+		return userid2;
+	}
+	public void setUserid2(int userid2) {
+		this.userid2 = userid2;
+	}
+	public int getCheckinID() {
+		return checkinID;
+	}
+	public void setCheckinID(int checkinID) {
+		this.checkinID = checkinID;
+	}
+	public int getCommentID() {
+		return commentID;
+	}
+	public void setCommentID(int commentID) {
+		this.commentID = commentID;
+	}
+	public static  void Like_checkIn(int checkinid  , int  userid){
+		 try{
+			 String  sql = "";
+			 
+		 }catch(Exception e){
+			 System.out.println(e.getMessage());
+		 }
+	}
+	public static  void Like_Comment(int commentid  , int  userid){
+		
+	}
+	
+	
+	
+	
+	
+	
+}

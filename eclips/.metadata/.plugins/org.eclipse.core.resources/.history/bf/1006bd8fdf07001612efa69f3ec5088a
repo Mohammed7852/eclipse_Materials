@@ -1,0 +1,53 @@
+package com.application;
+
+	import java.util.HashMap;
+	import java.util.Map;
+
+	import javax.servlet.http.HttpServletRequest;
+	import javax.servlet.http.HttpSession;
+	import javax.ws.rs.FormParam;
+	import javax.ws.rs.GET;
+	import javax.ws.rs.POST;
+	import javax.ws.rs.Path;
+	import javax.ws.rs.Produces;
+	import javax.ws.rs.core.Context;
+	import javax.ws.rs.core.MediaType;
+	import javax.ws.rs.core.Response;
+
+	import org.glassfish.jersey.server.mvc.Viewable;
+	import org.json.simple.JSONObject;
+	import org.json.simple.parser.JSONParser;
+	import org.json.simple.parser.ParseException;
+   @Path("/placeclass")
+	public interface PlaceInterface {
+		
+		@Context
+		
+
+		@GET
+		@Path("/savenewplace")
+		@Produces(MediaType.TEXT_HTML)
+		public Response savenewplace();
+
+		@GET
+		@Path("/addnewplace")
+		@Produces(MediaType.TEXT_HTML)
+		public Response addnewplace();
+
+		@POST
+		@Path("/doAddNewPlace")
+		@Produces(MediaType.TEXT_HTML)
+		public Response doaddnewplace(@FormParam("placename") String placename,
+				@FormParam("description") String description) ;
+			
+		@POST
+		@Path("/doSavingPlace")
+		@Produces(MediaType.TEXT_HTML)
+		public abstract Response doSavingPlace(@FormParam("placename") String placename,
+				@FormParam("email") String email) ;
+			
+		
+
+	
+
+}

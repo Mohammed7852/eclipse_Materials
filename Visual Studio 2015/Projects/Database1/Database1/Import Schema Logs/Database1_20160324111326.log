@@ -1,0 +1,75 @@
+24-Mar-16 1:13:26 مساءً	This log contains information about the import schema operation into project 'Database1' on computer 'MOHAMED_ALI_SHA' by user 'mohamed ali shabanah'.
+24-Mar-16 1:13:26 مساءً	Import of database schema has started.
+24-Mar-16 1:13:34 مساءً	Gathering database options
+24-Mar-16 1:13:34 مساءً	Gathering users
+24-Mar-16 1:13:34 مساءً	Gathering roles
+24-Mar-16 1:13:34 مساءً	Gathering application roles
+24-Mar-16 1:13:34 مساءً	Gathering role memberships
+24-Mar-16 1:13:34 مساءً	Gathering filegroups
+24-Mar-16 1:13:34 مساءً	Gathering full-text catalogs
+24-Mar-16 1:13:34 مساءً	Gathering assemblies
+24-Mar-16 1:13:34 مساءً	Gathering certificates
+24-Mar-16 1:13:34 مساءً	Gathering asymmetric keys
+24-Mar-16 1:13:34 مساءً	Gathering symmetric keys
+24-Mar-16 1:13:34 مساءً	Gathering encrypted symmetric keys
+24-Mar-16 1:13:34 مساءً	Gathering schemas
+24-Mar-16 1:13:34 مساءً	Gathering XML schema collections
+24-Mar-16 1:13:34 مساءً	Gathering user-defined data types
+24-Mar-16 1:13:34 مساءً	Gathering user-defined types
+24-Mar-16 1:13:34 مساءً	Gathering table types
+24-Mar-16 1:13:34 مساءً	Gathering unique keys for table types
+24-Mar-16 1:13:34 مساءً	Gathering primary keys for table types
+24-Mar-16 1:13:34 مساءً	Gathering check constraints for table types
+24-Mar-16 1:13:34 مساءً	Gathering default constraints for table types
+24-Mar-16 1:13:34 مساءً	Gathering partition functions
+24-Mar-16 1:13:34 مساءً	Gathering partition schemes
+24-Mar-16 1:13:34 مساءً	Gathering functions
+24-Mar-16 1:13:34 مساءً	Gathering encrypted functions
+24-Mar-16 1:13:34 مساءً	Gathering aggregates
+24-Mar-16 1:13:34 مساءً	Gathering procedures
+24-Mar-16 1:13:34 مساءً	Gathering encrypted procedures
+24-Mar-16 1:13:34 مساءً	Gathering tables
+24-Mar-16 1:13:34 مساءً	Gathering primary keys
+24-Mar-16 1:13:34 مساءً	Gathering unique constraints
+24-Mar-16 1:13:34 مساءً	Gathering foreign keys
+24-Mar-16 1:13:34 مساءً	Gathering default constraints
+24-Mar-16 1:13:34 مساءً	Gathering check constraints
+24-Mar-16 1:13:34 مساءً	Gathering views
+24-Mar-16 1:13:34 مساءً	Gathering encrypted views
+24-Mar-16 1:13:34 مساءً	Gathering indexes
+24-Mar-16 1:13:34 مساءً	Gathering statistics
+24-Mar-16 1:13:34 مساءً	Gathering full-text index stoplists
+24-Mar-16 1:13:34 مساءً	Gathering search property lists
+24-Mar-16 1:13:34 مساءً	Gathering search properties
+24-Mar-16 1:13:34 مساءً	Gathering full-text indexes
+24-Mar-16 1:13:34 مساءً	Gathering column store indexes
+24-Mar-16 1:13:34 مساءً	Gathering spatial indexes
+24-Mar-16 1:13:34 مساءً	Gathering XML indexes
+24-Mar-16 1:13:34 مساءً	Gathering encrypted triggers
+24-Mar-16 1:13:34 مساءً	Gathering triggers
+24-Mar-16 1:13:34 مساءً	Gathering encrypted and clr ddl triggers
+24-Mar-16 1:13:34 مساءً	Gathering ddl triggers
+24-Mar-16 1:13:34 مساءً	Gathering synonyms
+24-Mar-16 1:13:34 مساءً	Gathering defaults
+24-Mar-16 1:13:34 مساءً	Gathering data constraint uddt bindings
+24-Mar-16 1:13:34 مساءً	Gathering rules
+24-Mar-16 1:13:34 مساءً	Gathering data constraint uddt bindings
+24-Mar-16 1:13:34 مساءً	Gathering message types
+24-Mar-16 1:13:34 مساءً	Gathering queues
+24-Mar-16 1:13:34 مساءً	Gathering contracts
+24-Mar-16 1:13:34 مساءً	Gathering services
+24-Mar-16 1:13:34 مساءً	Gathering event notifications
+24-Mar-16 1:13:34 مساءً	Gathering remote service bindings
+24-Mar-16 1:13:34 مساءً	Gathering broker priorities
+24-Mar-16 1:13:34 مساءً	Gathering signatures
+24-Mar-16 1:13:34 مساءً	Gathering data compression options
+24-Mar-16 1:13:34 مساءً	Gathering sequence types
+24-Mar-16 1:13:34 مساءً	Gathering extended properties
+24-Mar-16 1:13:34 مساءً	Gathering credentials
+24-Mar-16 1:13:34 مساءً	Gathering logins
+24-Mar-16 1:13:34 مساءً	Gathering server audits
+24-Mar-16 1:13:36 مساءً	Scanning project for duplicate elements
+24-Mar-16 1:13:36 مساءً	Finished duplicate element processing
+24-Mar-16 1:13:37 مساءً	Finished importing database.
+24-Mar-16 1:13:37 مساءً	A summary of the import was saved to the following location: c:\users\mohamed ali shabanah\documents\visual studio 2015\Projects\Database1\Database1\Import Schema Logs\Database1_20160324111326.log
+24-Mar-16 1:13:37 مساءً	Click Finish to continue...

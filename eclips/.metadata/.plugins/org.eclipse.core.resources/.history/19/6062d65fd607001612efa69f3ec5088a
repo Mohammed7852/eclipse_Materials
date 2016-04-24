@@ -1,0 +1,10 @@
+package com.models;
+
+import java.util.ArrayList;
+
+public class Node {
+
+	ArrayList<Check_inModel> list1 = new ArrayList();
+	ArrayList<ArrayList<LikeModel>> list2 = new ArrayList<>();
+	ArrayList<ArrayList<CommentModel>> list3 = new ArrayList<>();
+}

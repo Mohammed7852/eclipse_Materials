@@ -1,0 +1,2 @@
+project1.RatingSortingStrategy
+Project1.RatingSortingStrategy

@@ -1,0 +1,11 @@
+package com.models;
+
+public class LikeModel {
+
+	private  int LikeID ;
+	private  int userid1 ;
+	private  int  userid2 ;
+	private int  checkinID ;
+	
+	
+}

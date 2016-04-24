@@ -1,0 +1,70 @@
+package com.models;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+
+import org.apache.tomcat.jdbc.pool.DataSourceFactory;
+
+
+
+import com.models.*;
+import com.mysql.*;
+import com.mysql.jdbc.Statement;
+
+
+public class LikeModel {
+
+	
+	
+	private  UserModel usermodel ;
+	private  Check_inModel checkin ;
+	private  int  userid  ;
+	private  int  checkinID ;
+	
+	public UserModel getUsermodel() {
+		return usermodel;
+	}
+	public void setUsermodel(UserModel usermodel) {
+		this.usermodel = usermodel;
+	}
+	public Check_inModel getCheckin() {
+		return checkin;
+	}
+	public void setCheckin(Check_inModel checkin) {
+		this.checkin = checkin;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public int getCheckinID() {
+		return checkinID;
+	}
+	public void setCheckinID(int checkinID) {
+		this.checkinID = checkinID;
+	}
+	public static void LikeCheckIn(int checkInID , int userid ){
+		
+	}
+	public static  void LikeComment(int  CommentID , int userid  ){
+		
+	}
+	
+	public static void RemoveLike(int likeID){
+		
+	}
+	public static void  ShowCheckInLikes(int  checkinID ){
+		
+	}
+	public static void  ShowCommentLikes(int  commentID){
+		
+	}
+}

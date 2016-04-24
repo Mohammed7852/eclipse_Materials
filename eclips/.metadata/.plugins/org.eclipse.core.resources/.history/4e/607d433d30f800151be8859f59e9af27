@@ -1,8 +1,0 @@
-package Assignmen_2;
-
-public class Runs {
-	public static void  main(String  []args){
-		
-	}
-
-}

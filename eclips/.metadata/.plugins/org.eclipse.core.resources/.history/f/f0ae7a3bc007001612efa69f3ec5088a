@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Check_In Page</title>
+</head>
+
+<body>
+	<p>${it}</p>
+	<form action="docheckin" method="post">
+		<input type="hidden" value="<%=session.getAttribute("email")%>"
+			name="email" />
+		<h3>
+			Enter place name: <input type="text" name="placename" />
+		</h3>
+		<h3>
+			Enter your post here : <input type="text" name="text" />
+		</h3>
+		<input type="submit" value="CheckIn" />
+	</form>
+	<br>
+
+	<a href="/FCISquareApp/app/home.jsp">Back</a>
+
+
+</body>
+</html>

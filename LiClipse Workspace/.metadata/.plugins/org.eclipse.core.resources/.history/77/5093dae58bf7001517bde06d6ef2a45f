@@ -1,0 +1,29 @@
+'''
+Created on Mar 31, 2016
+
+@author: mohamed ali shabanah
+'''
+import Assignments
+from _overlapped import NULL
+
+                      
+class Node :
+    state=[]
+    action =[]
+    parent=[]
+    cost=0
+    path=0
+    def __init__(self,state,parent=NULL):
+        print()
+        self.parent=parent
+        
+                        
+    
+
+if __name__ == '__main__':
+    print("main class")
+    b = Assignments.Buzzel.Buzzel
+    goal = [1, 8, 7, 2, 0, 6, 3, 4, 5]
+    print(goal)
+    initial_state = [1, 2, 3, 8, 0, 4, 7, 6, 5]
+

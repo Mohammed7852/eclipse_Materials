@@ -1,0 +1,44 @@
+package com.services;
+
+public class CommentModel {
+
+	
+	private  int  CommentID ;
+	private  int  checkInID ;
+	private  int userid  ;
+	private  String  text ;
+	public int getCommentID() {
+		return CommentID;
+	}
+	public void setCommentID(int commentID) {
+		CommentID = commentID;
+	}
+	public int getCheckInID() {
+		return checkInID;
+	}
+	public void setCheckInID(int checkInID) {
+		this.checkInID = checkInID;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	
+	
+	
+	public static  CommentModel addComment(int  checkin , int  userid  , String  text){
+		
+	}
+	
+	
+	
+	
+}

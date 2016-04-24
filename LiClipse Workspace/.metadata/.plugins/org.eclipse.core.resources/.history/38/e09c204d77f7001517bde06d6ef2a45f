@@ -1,0 +1,12 @@
+'''
+Created on Mar 31, 2016
+
+@author: mohamed ali shabanah
+'''
+
+state=[1, 2, 3, 8, 0, 4, 7, 6, 5]
+print(state.index(0))
+action="mohammed"++5
+
+
+print(action)

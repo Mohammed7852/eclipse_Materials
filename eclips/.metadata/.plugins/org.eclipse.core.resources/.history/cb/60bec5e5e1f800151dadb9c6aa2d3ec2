@@ -1,0 +1,30 @@
+package Assignmen_2;
+
+import  java.util.*;
+import  java.io.*;
+
+public class Runs {
+	public static void  main(String  []args) throws IOException{
+        
+		RandomAccessFile  Write = new RandomAccessFile("myfile.txt", "rw");
+		int arr[] = { 3,4,6,2,9,4,7,8,6,5,3,1,2 };
+		for(int x :arr)
+			Write.write(x);
+		
+		Write.close();
+		String  file1="Data.bin" , file2 ="output.txt";
+		RandomAccessFile Read = new RandomAccessFile(file2, "r");
+  		int x  = (int)Read.length();
+  		System.out.println("length = "+x);
+		int c =0 , c2=0;
+		for(int i=0 ;i<x;i++){
+			int num =Read.read();
+			c++;
+			System.out.print(num+",");
+			if(c==10){System.out.print("\n");c=0;}
+			if(num==0)c2++;
+		}
+		System.out.println("\nZeroes="+c2);
+		Read.close();
+	}
+}

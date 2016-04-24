@@ -1,0 +1,203 @@
+package com.models;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.util.*;
+import java.util.Vector;
+
+import org.apache.tomcat.jdbc.pool.DataSourceFactory;
+
+import com.models.*;
+import com.mysql.*;
+import com.mysql.jdbc.Statement;
+
+public class Check_inModel {
+
+	private int checkInID;
+	private String time;
+	private int userid;
+	private int placeid;
+	private String text;
+
+	public int getCheckInID() {
+		return checkInID;
+	}
+
+	public void setCheckInID(int checkInID) {
+		this.checkInID = checkInID;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public int getPlaceid() {
+		return placeid;
+	}
+
+	public void setPlaceid(int placeid) {
+		this.placeid = placeid;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public static Check_inModel checkIn(String text, int userid, int placeid, String time) {
+		System.out.println("check in model");
+		try {
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Insert into fcisquare.checkin "
+					+ "(`checkIn_time`,`placeID` ,`userID`, `checkIn_text` ) VALUES  (?,?,?,?)";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, time);
+			stmt.setInt(2, placeid);
+			stmt.setInt(3, userid);
+			stmt.setString(4, text);
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				Check_inModel checkin = new Check_inModel();
+				System.out.println("we are  in checkin model" + rs.getInt(1));
+				// System.out.println(rs.getInt(1));
+				checkin.setCheckInID(rs.getInt(1));
+				checkin.setPlaceid(placeid);
+				checkin.setText(text);
+				checkin.setTime(time);
+				checkin.setUserid(userid);
+
+				return checkin;
+			}
+
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public static void removeCheckIn(int checkInID) {
+
+	}
+
+	public static ArrayList<Check_inModel> getcheckIns(int userid) {
+
+		try {
+			Connection conn = DBConnection.getActiveConnection();
+
+			String sql = "select * from checkin where `userID`=?";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, userid);
+
+			ResultSet rs = stmt.executeQuery();
+
+			ArrayList<Check_inModel> list = new ArrayList();
+			while (rs.next()) {
+				System.out.println("we are printing checkins");
+				Check_inModel check = new Check_inModel();
+				check.setCheckInID(rs.getInt("checkIn_ID"));
+				check.setPlaceid(rs.getInt("placeID"));
+				check.setText(rs.getString("checkIn_text"));
+				check.setTime(rs.getString("checkIn_time"));
+				check.setUserid(rs.getInt("userID"));
+				list.add(check);
+			}
+			
+			System.out.println("we are returning cheks_ins");
+			return list ;
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		return null;
+		// try {
+		// Connection conn = DBConnection.getActiveConnection();
+		//
+		// String sql = "select * from checkin where `userID`=?";
+		// PreparedStatement stmt;
+		// stmt = conn.prepareStatement(sql);
+		// stmt.setInt(1, userid);
+		//
+		// ResultSet rs = stmt.executeQuery();
+		//
+		// ArrayList<Check_inModel> list = new ArrayList();
+		// ArrayList<CommentModel> comments = new ArrayList<>();
+		// ArrayList<ArrayList<CommentModel>> commentslist = new ArrayList();
+		// ArrayList<LikeModel> likes = new ArrayList<>();
+		// ArrayList<ArrayList<LikeModel>> likeslist = new ArrayList<>();
+		//
+		// while (rs.next()) {
+		// System.out.println("we are printing checkins");
+		// Check_inModel check = new Check_inModel();
+		// check.setCheckInID(rs.getInt("checkIn_ID"));
+		// check.setPlaceid(rs.getInt("placeID"));
+		// check.setText(rs.getString("checkIn_text"));
+		// check.setTime(rs.getString("checkIn_time"));
+		// check.setUserid(rs.getInt("userID"));
+		// list.add(check);
+		//
+		// int id = check.getCheckInID();
+		// String s2 = "select * from comment where `checkIn_ID`=?";
+		// PreparedStatement stmt2 = null;
+		// stmt = conn.prepareStatement(s2);
+		// stmt.setInt(1, id);
+		// ResultSet rs2 = stmt2.executeQuery();
+		//
+		// while (rs2.next()) {
+		// System.out.println("we are in comment ");
+		// CommentModel comment = new CommentModel();
+		// comment.setCheckInID(rs2.getInt("checkIn_ID"));
+		// comment.setCommentID(rs2.getInt("commentID"));
+		// comment.setText(rs2.getString("commentText"));
+		// comment.setUserid(rs2.getInt("userID"));
+		// comments.add(comment);
+		// }
+		// commentslist.add(comments);
+		// s2 = "select * from like_checkin where `checkIn_ID`=?";
+		// stmt2 = null;
+		// stmt = conn.prepareStatement(s2);
+		// stmt.setInt(1, id);
+		// rs2 = stmt2.executeQuery();
+		// while (rs2.next()) {
+		// System.out.println("we are in like_checkin");
+		// LikeModel like = new LikeModel();
+		// like.setCheckinID(rs2.getInt("checkIn_ID"));
+		// like.setUserid1(rs2.getInt("userID"));
+		// likes.add(like);
+		// }
+		// likeslist.add(likes);
+		// }
+		//
+		//
+		// } catch (Exception e) {
+		// e.getMessage();
+		// }
+		//
+		// return null;
+	}
+
+}

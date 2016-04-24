@@ -1,0 +1,114 @@
+package com.application;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.server.mvc.Viewable;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+@Path("/placeclass")
+public class PlaceController {
+	@Context
+	HttpServletRequest request;
+
+	@GET
+	@Path("/savenewplace")
+	@Produces(MediaType.TEXT_HTML)
+	public Response savenewplace() {
+		System.out.println("we are  int save place");
+		return Response.ok(new Viewable("/savenewplace.jsp")).build();
+	}
+
+	@GET
+	@Path("/addnewplace")
+	@Produces(MediaType.TEXT_HTML)
+	public Response addnewplace() {
+		return Response.ok(new Viewable("/addnewplace.jsp")).build();
+	}
+
+	@POST
+	@Path("/doAddNewPlace")
+	@Produces(MediaType.TEXT_HTML)
+	public Response doaddnewplace(@FormParam("placename") String placename,
+			@FormParam("description") String description) {
+
+		String serviceUrl = "http://localhost:8080/FCISquare/rest/addnewplace";
+		String urlParameters = "placename=" + placename + "&description=" + description;
+		String retJson = Connection.connect(serviceUrl, urlParameters, "POST",
+				"application/x-www-form-urlencoded;charset=UTF-8");
+
+		HttpSession session = request.getSession();
+		JSONObject obj = new JSONObject();
+		JSONParser parser = new JSONParser();
+		try {
+			obj = (JSONObject) parser.parse(retJson);
+			// session.setAttribute("email", obj.get("email"));
+			// session.setAttribute("name", obj.get("name"));
+			// session.setAttribute("id", obj.get("id"));
+			// session.setAttribute("lat", obj.get("lat"));
+			// session.setAttribute("long", obj.get("long"));
+			// session.setAttribute("pass", obj.get("pass"));
+
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("Place_Name", (String) obj.get("placename"));
+			map.put("Descrption", (String) obj.get("descrption"));
+
+			return Response.ok(new Viewable("/home.jsp", map)).build();
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
+	@POST
+	@Path("/doSavingPlace")
+	@Produces(MediaType.TEXT_HTML)
+	public Response doSavingPlace(@FormParam("email") String email, @FormParam("placename") String placename) {
+		System.out.println("we are  in dosaveplace");
+		
+		String serviceUrl = "http://localhost:8080/FCISquare/rest/savenewplace";
+		String urlParameters = "placename=" + placename + "&email=" + email;
+		// System.out.println(urlParameters);
+		String retJson = Connection.connect(serviceUrl, urlParameters, "POST",
+				"application/x-www-form-urlencoded;charset=UTF-8");
+		// HttpSession session = request.getSession();
+		JSONObject obj = new JSONObject();
+		JSONParser parser = new JSONParser();
+		try {
+			obj = (JSONObject) parser.parse(retJson);
+			// session.setAttribute("email", obj.get("email"));
+			// session.setAttribute("name", obj.get("name"));
+			// session.setAttribute("id", obj.get("id"));
+			// session.setAttribute("lat", obj.get("lat"));
+			// session.setAttribute("long", obj.get("long"));
+			// session.setAttribute("pass", obj.get("pass"));
+
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("Place_Name", (String) obj.get("placename"));
+			return Response.ok(new Viewable("/home.jsp", retJson)).build();
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+  
+}

@@ -1,0 +1,2 @@
+project1.NearSortingStrategy
+Project1.NearSortingStrategy

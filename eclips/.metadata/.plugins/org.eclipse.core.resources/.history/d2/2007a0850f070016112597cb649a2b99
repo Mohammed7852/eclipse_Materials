@@ -1,0 +1,88 @@
+package com.services;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.xml.stream.events.Comment;
+
+import com.models.Check_inModel;
+import com.models.DBConnection;
+import com.mysql.jdbc.Statement;
+
+public class CommentModel {
+
+	
+	private  int  CommentID ;
+	private  int  checkInID ;
+	private  int userid  ;
+	private  String  text ;
+	public int getCommentID() {
+		return CommentID;
+	}
+	public void setCommentID(int commentID) {
+		CommentID = commentID;
+	}
+	public int getCheckInID() {
+		return checkInID;
+	}
+	public void setCheckInID(int checkInID) {
+		this.checkInID = checkInID;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	public String getText() {
+		return text;
+	}
+	public void setText(String text) {
+		this.text = text;
+	}
+	
+	
+	
+	public static  CommentModel addComment(int  checkin , int  userid  , String  text){
+		
+          
+		try {
+			Connection conn = DBConnection.getActiveConnection();
+			String sql = "Insert into fcisquare.comment "
+					+ "(`checkIn_ID`,`userID` ,`Comment_text` ) VALUES  (?,?,?)";
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, checkin);
+			stmt.setInt(2, userid);
+			stmt.setString(3, text);	
+			
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				CommentModel comment = new CommentModel();
+				
+				System.out.println("we are setting new comment ");
+				comment.setCheckInID(checkInID);
+				comment.setText(text);
+				comment.setUserid(userid);
+		
+				return comment;
+			}
+
+			return null;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+		
+		
+	}
+	
+	
+	
+	
+}

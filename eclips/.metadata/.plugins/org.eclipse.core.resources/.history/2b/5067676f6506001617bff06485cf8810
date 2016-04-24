@@ -1,0 +1,26 @@
+package com.models;
+
+public class LikeModel {
+
+	
+	
+	private  UserModel usermodel ;
+	private  Check_inModel checkin ;
+	private  int  userid  ;
+	private  int  checkinID ;
+	
+	public static void LikeCheckIn(int checkInID , int userid ){
+		
+	}
+	public static  void LikeComment(int  CommentID , int userid  ){
+		
+	}
+	
+	public static void RemoveLike(int likeID){
+		
+	}
+	public static void  ShowCheckInLikes(int  checkinID ){
+		
+	}
+	public static void  ShowCommentLikes(int  commentID){
+}

@@ -1,0 +1,127 @@
+
+
+
+	package com.application;
+
+	import java.util.HashMap;
+	import java.util.Map;
+
+	import javax.servlet.http.HttpServletRequest;
+	import javax.servlet.http.HttpSession;
+	import javax.ws.rs.FormParam;
+	import javax.ws.rs.GET;
+	import javax.ws.rs.POST;
+	import javax.ws.rs.Path;
+	import javax.ws.rs.PathParam;
+	import javax.ws.rs.Produces;
+	import javax.ws.rs.core.Context;
+	import javax.ws.rs.core.MediaType;
+	import javax.ws.rs.core.Response;
+
+	import org.glassfish.jersey.server.mvc.Viewable;
+	import org.json.simple.JSONArray;
+	import org.json.simple.JSONObject;
+	import org.json.simple.parser.JSONParser;
+	import org.json.simple.parser.ParseException;
+
+	@Path("/")
+	public interface UserInterface {
+
+		@Context
+		
+
+		@GET
+		@Path("/follow")
+		@Produces(MediaType.TEXT_HTML)
+		public Response follow();
+
+		
+		
+		@GET
+		@Path("/unfollow")
+		@Produces(MediaType.TEXT_HTML)
+		public Response unfollow();
+
+		@GET
+		@Path("/getfollowers")
+		@Produces(MediaType.TEXT_HTML)
+		public Response getfollowers();
+		
+		@GET
+		@Path("/getLastPositionOfUser")
+		@Produces(MediaType.TEXT_HTML)
+		public Response getLastPositionOfUser();
+
+		@GET
+		@Path("/")
+		@Produces(MediaType.TEXT_HTML)
+		public Response wellcomepage();
+
+		@GET
+		@Path("/Login")
+		@Produces(MediaType.TEXT_HTML)
+		public Response loginPage();
+
+		@GET
+		@Path("/signUp")
+		@Produces(MediaType.TEXT_HTML)
+		public Response signUpPage();
+
+		@GET
+		@Path("/showLocation")
+		@Produces(MediaType.TEXT_HTML)
+		public Response showLocationPage();
+
+		@POST
+		@Path("/updateMyLocation")
+		@Produces(MediaType.TEXT_PLAIN)
+		public String updateLocation(@FormParam("lat") String lat, @FormParam("long") String lon) ;
+	
+
+		@POST
+		@Path("/doLogin")
+		@Produces(MediaType.TEXT_HTML)
+		public Response showHomePage(@FormParam("email") String email, @FormParam("pass") String pass) ;
+			
+		
+
+		@POST
+		@Path("/dofollow")
+		@Produces(MediaType.TEXT_HTML)
+		public Response dofollow(@FormParam("email1") String email1, @FormParam("email2") String email2) ;
+		
+
+		@POST
+		@Path("/dounfollow")
+		@Produces(MediaType.TEXT_HTML)
+		public Response dounfollow(@FormParam("email1") String email1, @FormParam("email2") String email2) ;
+
+			
+
+		@POST
+		@Path("/doGetFollowers")
+		@Produces(MediaType.TEXT_HTML)
+		public Response doGetFollowers(@FormParam("email") String email) ;
+
+			
+
+		@POST
+		@Path("/getLastPositionOfUser")
+		@Produces(MediaType.TEXT_HTML)
+		public Response getLastPositionOfUser2(@FormParam("email") String email) ;
+
+			
+
+		@POST
+		@Path("/doError")
+		@Produces(MediaType.TEXT_HTML)
+		public Response HomePage();
+		
+		@POST
+		@Path("/doSignUp")
+		@Produces(MediaType.TEXT_HTML)
+		public Response showHomePage(@FormParam("name") String name, @FormParam("email") String email,
+				@FormParam("pass") String pass) ;
+			
+	
+}

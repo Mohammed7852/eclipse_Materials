@@ -22,49 +22,46 @@ public class Merge {
 	 * @throws IOException
 	 */
 	public String[] DivideInputFileIntoNRuns(String Inputfilename, int k, int rSize) throws IOException {
+		System.out.print("\n\t\tDivideInputFileIntoNRuns\n");
 		this.K = k;
 		this.runSize = rSize;
 		this.file_name = Inputfilename;
 		// --------------------------//
 		String[] Array_files;
-
-		reader1 = new BufferedReader(new FileReader(file_name));
+		// reader1 = new BufferedReader(new FileReader(file_name));
+		RandomAccessFile Read = new RandomAccessFile(file_name, "r");
+		Read.seek(0);
+		int len = (int) Read.length() / 4;
+		int countnums = 0;
 		int count1 = 1, count2 = 0;
-		List<Integer> list = new ArrayList();
 		List<String> filesName = new ArrayList();
-
 		boolean temp = true;
 		while (temp) {
-			list = new ArrayList();
+			String filename = "Run#" + (count1++) + ".txt";
+			System.out.print("\nat:" + filename + " will be :");
+			// writer1 = new BufferedWriter(new FileWriter(filename));
+			RandomAccessFile Write = new RandomAccessFile(filename, "rw");
+			Write.seek(0);
+			filesName.add(filename);
 			int i = 0;
 			for (; i < runSize; i++) {
-				if (reader1.ready()) {
-					int x = reader1.read();
-					list.add(x);
-				} else {
+				if (countnums >= len) {
 					temp = false;
 					break;
 				}
+				countnums++;
+				int x = Read.readInt();
+				System.out.print(x + ",");
+				Write.writeInt(x);
 			} // end for
-
-			String filename = "Run#" + (count1++) + ".txt";
-			filesName.add(filename);
-			System.out.println("at:" + filename + " will be :" + list);
-			writer1 = new BufferedWriter(new FileWriter(filename));
-			for (int y : list) {
-				writer1.write(y);
-			}
-			writer1.flush();
-			writer1.close();
+			Write.close();
 		} // end while
-
-		reader1.close();
+		Read.close();
 		int size = count1 - 1;
 		Array_files = new String[size];
 		for (int i = 0; i < size; i++) {
 			Array_files[i] = filesName.get(i);
 		}
-
 		return Array_files;
 	}
 
@@ -74,22 +71,6 @@ public class Merge {
 	 * @param list
 	 * @return
 	 */
-	public List<Integer> sort(List<Integer> list) {
-
-		int size = list.size();
-		for (int i = 0; i < size; i++) {
-			int min = i;
-			for (int j = i + 1; j < size; j++) {
-				if (list.get(j) < list.get(min))
-					min = j;
-			}
-			int swap = list.get(i);
-			list.set(i, list.get(min));
-			list.set(min, swap);
-		}
-
-		return list;
-	}
 
 	/**
 	 * Sort Run
@@ -100,6 +81,7 @@ public class Merge {
 	 */
 
 	public static void fnSortHeap(int array[], int arr_ubound) {
+
 		int i, o;
 		int lChild = 0, rChild = 0, mChild = 0, root = 0, temp = 0;
 		root = (arr_ubound - 1) / 2;
@@ -137,44 +119,39 @@ public class Merge {
 
 	/**
 	 * Sort each Run
+	 * 
 	 * @param Runs
 	 * @return
 	 * @throws IOException
 	 */
 	public String[] SortEachRunOnMemoryAndWriteItBack(String[] Runs) throws IOException {
+		System.out.println("\n\t\tSortEachRunOnMemoryAndWriteItBack");
 		int size = Runs.length;
 		for (String file : Runs) {
-			reader1 = new BufferedReader(new FileReader(file));
+			// reader1 = new BufferedReader(new FileReader(file));
+			RandomAccessFile Read = new RandomAccessFile(file, "r");
+			Read.seek(0);
+			int len = (int) Read.length() / 4;
 			List<Integer> list = new ArrayList();
-			while (reader1.ready()) {
-				list.add(reader1.read());
-			} // end while
-			reader1.close();
+			for (int i = 0; i < len; i++) {
+				list.add(Read.readInt());
+			}
+			Read.close();
 			int sz = list.size();
-			int arr[] = new int[sz];//this  array will holds  the  contents  of  the  list to be sorted
-			for(int i = 0 ; i<sz ;i++)
-				arr[i]=list.get(i);
-				
-			writer1 = new BufferedWriter(new FileWriter(file));
+			int arr[] = new int[sz];
+			for (int i = 0; i < sz; i++)
+				arr[i] = list.get(i);
 
-			for(int i=arr.length;i>1;i--)
-			{
-				fnSortHeap(arr, i-1);
- 			}
-			 for(int x :arr)
-			 writer1.write(x);
-			
-			//Collections.sort(list);
-			//list = sort(list);
-			 
-			System.out.println("Sorted List:"+list);
-//			for(int x:list)
-//			  writer1.write(x);
-//			
-			writer1.flush();
-			writer1.close();
+			writer1 = new BufferedWriter(new FileWriter(file));
+			RandomAccessFile Write = new RandomAccessFile(file, "rw");
+			Write.seek(0);
+
+			Collections.sort(list);
+			System.out.println("Sorted List:" + list);
+			for (int x : list)
+				Write.writeInt(x);
+			Write.close();
 		}
- 
 		return Runs;
 	}
 
@@ -185,21 +162,23 @@ public class Merge {
 	 * @throws IOException
 	 */
 	public void DisplayRunsContent(String[] Runs) throws IOException {
+		System.out.println("\n\t\tDisplayRunsContent\n");
 		int size = Runs.length;
 		int count = 1;
 		for (String file : Runs) {
-			reader1 = new BufferedReader(new FileReader(file));
+			RandomAccessFile Read = new RandomAccessFile(file, "r");
 			List<Integer> list = new ArrayList();
-			while (reader1.ready()) {
-				list.add(reader1.read());
-			} // end while
-			reader1.close();
+			int len = (int) Read.length();
+			for (int i = 0; i < len / 4; i++) {
+				list.add(Read.readInt());
+			}
+			Read.close();
 			System.out.println("Run#=" + (count++) + "=" + list);
 		}
 
 	}//
 
-	private int c = 0;
+	private int c = 1;
 
 	/**
 	 * Merge Method
@@ -211,28 +190,35 @@ public class Merge {
 	 */
 	public String DoNWayMergeAndWriteASortedFile(String[] Runs, String Outputfilename) throws IOException {
 		System.out.println("\t\tDoMerge");
- 		int size = Runs.length;
- 		if (size == 1) {
-			System.out.println("size=1,run[0]=" + Runs[0]);
+		int size = Runs.length;
+		if (size == 1) {
+			RandomAccessFile Read = new RandomAccessFile(Runs[0], "r");
+			RandomAccessFile write = new RandomAccessFile(Outputfilename, "rw");
+			for (int i = 0; i < Read.length() / 4; i++) {
+				write.writeInt(Read.readInt());
+			}
+			write.close();
+			Read.close();
+			System.out.println();
 			return Runs[0];
 		}
- 		boolean temp = true;
+		boolean temp = true;
 		int count1 = 0, count2 = 0;
 		List<String> merged = new ArrayList();
- 		while (temp) {
- 			List<String> list = new ArrayList();
+		while (temp) {
+			List<String> list = new ArrayList();
 			for (int i = 0; i < K; i++) {
-				list.add(Runs[count1++]);
 				if (count1 >= size)
 					break;
+				list.add(Runs[count1++]);
 			}
 			count2++;
 			merged.add(merge(list));
 			c++;
 			if (count1 >= size)
 				break;
- 		} // end while
- 		int sz = merged.size();
+		} // end while
+		int sz = merged.size();
 		String[] runs = new String[sz];
 		for (int i = 0; i < sz; i++)
 			runs[i] = merged.get(i);
@@ -250,52 +236,55 @@ public class Merge {
 		System.out.println("\t\tMerge");
 
 		int size = list.size();
-		System.out.println("size=" + size);
+		System.out.println("\n\twe will merge  :" + size + "  files.");
+
 		int count = 1;
-		String str = "output#" + c + "," + (count++) + ".txt";
-		BufferedWriter w = new BufferedWriter(new FileWriter(str));
+		String str = "output" + c + "" + (count++) + ".txt";
+		// Writer w = new BufferedWriter(new FileWriter(str));
+		RandomAccessFile Write = new RandomAccessFile(str, "rw");
+		Write.seek(0);
 		RandomAccessFile[] ra = new RandomAccessFile[size];
 		for (int i = 0; i < size; i++) {
 			ra[i] = new RandomAccessFile(list.get(i), "rw");
+			ra[i].seek(0);
 		}
+		// seek array holds number of seek reached in each file
 		int[] seek = new int[size];
 		String out = "";
 		boolean temp = true;
 		while (temp) {
-			List<Integer> numbers = new ArrayList();
-			List<Integer> indexes = new ArrayList();
 			int counter = 0;
+			int min = 0, index = 0;
+			count = 0;
+
 			for (int i = 0; i < size; i++) {
-				int len = (int) ra[i].length();
+				int len = (int) ra[i].length() / 4;
 				if (seek[i] < len) {
-					ra[i].seek(seek[i]);
-					int x = ra[i].read();
-					numbers.add(x);
-					indexes.add(i);
+					ra[i].seek(seek[i] * 4);
+					int x = ra[i].readInt();
+					if (count == 0) {// this condition allows holding the first
+										// element to be checked with others
+						min = x;
+						index = i;
+						count++;
+					} else {
+						if (x < min) {
+							min = x;
+							index = i;
+						}
+					}
 					counter++;
 				}
 			} // end for
 			if (counter == 0)
 				break;
-			int min = numbers.get(0);
-			int index = indexes.get(0);
-			int sz = numbers.size();
-			for (int i = 1; i < sz; i++) {
-				int x = numbers.get(i);
-				if (x < min) {
-					min = x;
-					index = i;
-				}
-			}
-
-			w.write(min);
+			Write.writeInt(min);
 			out += min + ",";
 			seek[index]++;
 		} // end while
 
 		System.out.println("we write::" + out);
-		w.flush();
-		w.close();
+		Write.close();
 		for (int i = 0; i < size; i++) {
 			ra[i].close();
 		} // end for
@@ -304,33 +293,35 @@ public class Merge {
 	}
 
 	/**
-	 * Binary Search
+	 * + + ++++++++++++++++++++++++++++++++++++++++Binary Search
 	 * 
 	 * @param Sortedfilename
 	 * @param SearchValue
 	 * @return
 	 * @throws IOException
 	 */
+
 	public int BinarySearchOnSortedFile(String Sortedfilename, int SearchValue) throws IOException {
-		System.out.println("\t\tBinary Search ");
-		RandomAccessFile random = new RandomAccessFile(Sortedfilename, "rw");
+		System.out.println("\t\tBinary Search");
+		RandomAccessFile random = new RandomAccessFile(Sortedfilename, "r");
+		random.seek(0);
 		int mid, left, right;
-		mid = (int) random.length() / 2;
 		left = 0;
-		right = (int) random.length();
+		right = (int) random.length() / 4;
 
 		while (left <= right) {
 			mid = (right + left) / 2;
-			random.seek(mid);
-			int value = random.read();
+			random.seek(mid*4);
+			int value = random.readInt();
+			if (value == SearchValue)
+				return mid;
 			if (value > SearchValue)
 				right = mid - 1;
 			if (value < SearchValue)
 				left = mid + 1;
-			if (value == SearchValue)
-				break;
 		} // end while
 		random.close();
-		return mid;
+
+		return -1;
 	}
 }

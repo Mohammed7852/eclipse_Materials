@@ -1,0 +1,11 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+public class Demo {
+
+	public static void  main(String  []args){
+		String timeStamp = new SimpleDateFormat("dd/m/yyyy").
+				format(Calendar.getInstance().getTime());
+	    System.out.println(timeStamp);
+	}
+}

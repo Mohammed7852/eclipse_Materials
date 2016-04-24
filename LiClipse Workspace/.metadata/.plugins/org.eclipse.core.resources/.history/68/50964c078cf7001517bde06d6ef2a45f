@@ -1,0 +1,13 @@
+'''
+Created on Mar 31, 2016
+
+@author: mohamed ali shabanah
+'''
+
+if __name__ == '__main__':
+    print("main")
+    goal = [1, 8, 7, 2, 0, 6, 3, 4, 5]
+    initial_state = [1, 2, 3, 8, 0, 4, 7, 6, 5]
+    
+    
+

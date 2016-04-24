@@ -1,0 +1,15 @@
+package com.models;
+
+public class CommentModel {
+
+	private int userID ;
+	private int CheckInID ;
+	
+	
+	public static void  addNewComment(String  text , int userid  , int  checkInID ){
+		
+	}
+	public static  void RemoveComment(){
+		
+	}
+}

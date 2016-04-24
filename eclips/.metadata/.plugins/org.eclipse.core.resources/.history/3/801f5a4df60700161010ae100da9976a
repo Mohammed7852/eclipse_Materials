@@ -1,0 +1,300 @@
+package com.services;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.server.mvc.Viewable;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.models.*;
+import com.models.*;
+
+@Path("/")
+public class Services {
+
+	/*
+	 * @GET
+	 * 
+	 * @Path("/signup")
+	 * 
+	 * @Produces(MediaType.TEXT_HTML) public Response signUp(){ return
+	 * Response.ok(new Viewable("/Signup.jsp")).build(); }
+	 */
+
+	@POST
+	@Path("/signup")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String signUp(@FormParam("name") String name, @FormParam("email") String email,
+			@FormParam("pass") String pass) {
+
+		UserModel u = new UserModel();
+		UserModel user = u.addNewUser(name, email, pass);
+		JSONObject json = new JSONObject();
+	
+		json.put("id", user.getId());
+		json.put("name", user.getName());
+		json.put("email", user.getEmail());
+		json.put("pass", user.getPass());
+		json.put("lat", user.getLat());
+		json.put("long", user.getLon());
+
+		return json.toJSONString();
+	}
+
+	@POST
+	@Path("/follow")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String follow(@FormParam("email1") String email1, @FormParam("email2") String email2) {
+
+		int userID = UserModel.getUserID(email1);
+		int MyID = UserModel.getUserID(email2);
+		UserModel usr = new UserModel();
+		boolean f = false;
+		JSONObject json = new JSONObject();
+		usr.addNewFollower(userID, MyID);
+
+		UserModel user = UserModel.getuser(email1);
+
+		json.put("id", user.getId());
+		json.put("name", user.getName());
+		myEmail = user.getEmail();
+		json.put("email", user.getEmail());
+		json.put("pass", user.getPass());
+		json.put("lat", user.getLat());
+		json.put("long", user.getLon());
+
+		return json.toJSONString();
+
+	}
+
+	String myEmail = null;
+
+	@POST
+	@Path("/login")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String login(@FormParam("email") String email, @FormParam("pass") String pass) {
+		// possible to take from hare;
+
+		UserModel user = UserModel.login(email, pass);
+
+		JSONObject json = new JSONObject();
+   
+		json.put("id", user.getId());
+		json.put("name", user.getName());
+		json.put("email", user.getEmail());
+		json.put("pass", user.getPass());
+		json.put("lat", user.getLat());
+		json.put("long", user.getLon());
+     
+		Map<String, String> map = new HashMap();
+	 
+  		return json.toJSONString();
+	}
+
+	@POST
+	@Path("/getfollowers")
+	@Produces(MediaType.TEXT_PLAIN)
+
+	public String getfollowers(@FormParam("email") String email) {
+		ArrayList<UserModel> retUsers = new ArrayList<>();
+		org.json.simple.JSONArray retArry = new org.json.simple.JSONArray();
+
+		retUsers = UserModel.retrievefollowers(email);
+		int i = 1;
+		String str = "";
+		for (UserModel user : retUsers) {
+			JSONObject object = new JSONObject();
+
+			object.put("name", user.getName());
+			object.put("email", user.getEmail());
+			str += "Foloower#" + (i++) + ":- {name=" + user.getName() + "   ,  " + "email=" + user.getEmail() + "}<br>";
+			retArry.add(object);
+		}
+		
+		
+		return str ; 
+	}
+
+	@POST
+	@Path("/getLocation")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getPosition(@FormParam("email") String email) {
+
+		int id = new UserModel().getUserID(email);
+		UserModel user = UserModel.getLocation(id);
+		JSONObject json = new JSONObject();
+
+		json.put("id", user.getId());
+		json.put("name", user.getName());
+		json.put("email", user.getEmail());
+		json.put("pass", user.getPass());
+		json.put("lat", user.getLat());
+		json.put("long", user.getLon());
+
+		return json.toJSONString();
+	}
+
+	@POST
+	@Path("/updatePosition")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updatePosition(@FormParam("id") String id, @FormParam("lat") String lat,
+			@FormParam("long") String lon) {
+		Boolean status = UserModel.updateUserPosition(Integer.parseInt(id), Double.parseDouble(lat),
+				Double.parseDouble(lon));
+		JSONObject json = new JSONObject();
+		json.put("status", status ? 1 : 0);
+		return json.toJSONString();
+	}
+
+	@POST
+	@Path("/unfollow")
+	@Produces(MediaType.TEXT_PLAIN)	public String unfollow(@FormParam("email1") String email1, @FormParam("email2") String email2) {
+
+		int userID = UserModel.getUserID(email1);
+		int MyID = UserModel.getUserID(email2);
+
+		boolean status = UserModel.delete(userID, MyID);
+		UserModel user = UserModel.getuser(email1);
+		JSONObject json = new JSONObject();
+
+		json.put("id", user.getId());
+		json.put("name", user.getName());
+		myEmail = user.getEmail();
+		json.put("email", user.getEmail());
+		json.put("pass", user.getPass());
+		json.put("lat", user.getLat());
+		json.put("long", user.getLon());
+		json.put("status", status);
+
+		return json.toJSONString();
+	}
+
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getJson() {		return "Hello after editing";
+		// Connection URL:--*/
+		// mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
+	}
+	
+/**
+ * ----------------------------------------------phase 2-a------------------------------------------
+*/	
+
+	@POST
+	@Path("/checkin")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String checkIn(@FormParam("text") String text, @FormParam("email") String email 
+			,@FormParam("placename") String placename  ) {
+		
+        System.out.println("in checkin");
+        int placeid = new PlaceModel().getplaceid(placename);
+        if (placeid==-1){ 
+        	System.out.println("id not found");
+        	return "no";
+        }   
+        int  userid = new UserModel().getUserID(email);
+		String time = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+ 		
+		Check_inModel check  = new Check_inModel().checkIn(text, userid,
+				placeid, time);	
+		
+		JSONObject json = new JSONObject();
+		json.put("checkinid", check.getCheckInID());
+		json.put("placeid", check.getPlaceid());
+		json.put("userid", check.getUserid());
+		json.put("post", check.getText());
+		json.put("checkintime", check.getTime());
+		String  str = "Successful Checkin";
+		return json.toJSONString();
+	}
+	
+	@POST
+	@Path("/addnewplace")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String addnewplace(@FormParam("placename") String placename, @FormParam("description") String description) {
+		String time = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());		
+		
+		PlaceModel place   = new PlaceModel().addnewplace(placename, description);
+		
+		JSONObject json = new JSONObject();
+		System.out.println("\nplaceid  = "+place.getName());
+	   json.put("PlaceID", place.getPlaceid());
+       json.put("PlaceName", place.getName());
+       json.put("PlaceDescription", place.getDescription());
+       
+		return json.toJSONString();
+	}
+	
+	@POST
+	@Path("/savenewplace")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String SaveNewPlace(@FormParam("placename") String name  , @FormParam("userid") String userid ) {
+		 
+		PlaceModel place  = new PlaceModel().saveplace(name, Integer.parseInt(userid));
+		JSONObject json = new JSONObject();
+		json.put("PlaceID", place.getPlaceid());
+		json.put("placeName", place.getName());
+	
+		return json.toJSONString();
+	}
+
+	@POST
+	@Path("/comment")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String comment(@FormParam("checkinID") String checkin  , @FormParam("userid") String userid  , @FormParam("text")String  text) {
+		 
+		CommentModel comment  = new   CommentModel().addComment(Integer.parseInt(checkin), Integer.parseInt(userid), text);
+		
+		JSONObject json = new JSONObject();
+		json.put("Comment", comment.getText());
+		json.put("CheckIn_ID", comment.getCheckInID());
+		json.put("'userID", comment.getUserid());
+		
+		return json.toJSONString();
+	}
+	
+	@POST
+	@Path("/like_checkin")
+	@Produces(MediaType.TEXT_PLAIN)
+	public void like_checkin(@FormParam("checkinID") String checkin  ,
+			                   @FormParam("userid") String userid ) {
+		 
+ 		new LikeModel().Like_checkIn(Integer.parseInt(checkin),Integer.parseInt( userid));
+		JSONObject json = new JSONObject();
+		
+ 	}
+	
+	@POST
+	@Path("/homepage")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String homepage(@FormParam("email") String email  ) {
+		ArrayList<Check_inModel>list=new ArrayList<Check_inModel>(); 
+		int userid=new  UserModel().getUserID(email);
+		list=new Check_inModel().followerscheckin(userid);	
+		System.out.println("lis="+list.get(0).getCheckInID()+"\nsize="+list.size());
+		int  sz= list.size();
+		JSONArray array = new JSONArray();
+		int i=0;
+		
+		return "kgkfngknfk";
+	}
+	
+}

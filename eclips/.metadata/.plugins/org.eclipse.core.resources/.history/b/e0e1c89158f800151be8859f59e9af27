@@ -1,0 +1,42 @@
+package Assignmen_2;
+
+import java.io.*;
+import java.util.*;
+
+import javax.swing.DefaultRowSorter;
+
+public class Demo {
+
+	static Scanner cin = new Scanner(System.in);
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+
+		int arr[] = { 54 ,3  ,10 , 23 , 5 , 25 , 1 , 75 };
+		
+ 		BufferedWriter bw = new BufferedWriter(new FileWriter("file.txt"));
+		for (int x  : arr){
+			bw.write(x);
+ 		}
+		bw.flush();
+		bw.close();
+		
+		int K=2, runSize=2;
+		String filename = "file.txt"/*"Data.bin"*/;
+		
+		System.out.println("Enter K-Merge:");
+		K=cin.nextInt();
+		
+		System.out.println("Enter # RunSize :");
+		runSize=cin.nextInt();
+		
+		
+  		Merge merge  = new Merge();
+		String  [] files  = merge.DivideInputFileIntoNRuns( filename,  K,  runSize);
+		int  size= files.length;
+		merge.SortEachRunOnMemoryAndWriteItBack(files);
+		merge.DisplayRunsContent(files);
+		String  outfile =merge.DoNWayMergeAndWriteASortedFile(files, "output.txt");
+		int  index  = merge.BinarySearchOnSortedFile(outfile, 75);
+		System.out.print("outputfile="+outfile+"\nindex="+index);
+ 
+	}
+}

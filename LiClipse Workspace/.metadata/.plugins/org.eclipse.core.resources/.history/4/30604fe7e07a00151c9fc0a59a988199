@@ -1,0 +1,62 @@
+'''
+Created on Oct 18, 2015
+
+@author: mohamed ali shabanah
+'''
+
+import functions
+from trying.functions import add
+from trying.functions import sub 
+
+from _overlapped import NULL
+from pip._vendor.pkg_resources import null_ns_handler
+ 
+
+print(add( 4,5))
+
+from trying.functions import person
+
+p=person
+
+
+print(person.check(NULL,20))
+
+file="Myfile.txt"
+
+f=open(file,'w')
+f.seek(0)
+
+a=0 
+a=str(a)
+f.write("0")
+f.close()
+
+while True:
+    message=input("enter the age:")
+    num=int(message)
+    print("message is:",message)
+    print("num :",num)
+    temp=person.check(NULL, num)
+    
+    print("temp =" ,temp)
+    
+    if person.check(NULL, num):
+        f=open(file , 'r+')
+        f.seek(0)
+        r=f.read()
+        //print("str(r) is:",r , "\n\n")
+        y=int(r)+1
+        f.seek(0)
+        f.write(str(y))
+        f.close()
+    else :
+        y= 18-num 
+        print("to be accepted you need :" , y , "\n\n") 
+         
+        
+    
+    
+    
+    
+    
+    

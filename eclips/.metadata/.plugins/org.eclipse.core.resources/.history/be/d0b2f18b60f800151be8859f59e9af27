@@ -1,0 +1,20 @@
+package Assignmen_2;
+
+import  java.util.*;
+import  java.io.*;
+
+public class Runs {
+	public static void  main(String  []args) throws IOException{
+
+		RandomAccessFile ra = new RandomAccessFile("Data.bin", "r");
+		RandomAccessFile ra2 = new RandomAccessFile("output#134,1.txt", "r");
+		int x  = (int)ra.length();
+		int y =(int)ra2.length();
+		System.out.println(", sz2="+y);
+		for(int i=0 ;i<y;i++){
+			System.out.print(ra2.read()+",");
+		}
+		
+	}
+
+}
